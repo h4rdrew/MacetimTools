@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacetimTools", "MacetimTools.csproj", "{1B4FF44E-0C5F-4814-AC14-5AA30C06F85F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B4FF44E-0C5F-4814-AC14-5AA30C06F85F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B4FF44E-0C5F-4814-AC14-5AA30C06F85F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B4FF44E-0C5F-4814-AC14-5AA30C06F85F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B4FF44E-0C5F-4814-AC14-5AA30C06F85F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA8B6624-6C01-4798-B27E-EA78FA4B018B}
+	EndGlobalSection
+EndGlobal
