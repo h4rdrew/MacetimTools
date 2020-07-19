@@ -15,7 +15,7 @@ Pressione a hotkey ALT+F9
 Pressione a hotkey ALT+F1
 
 ***Note, não utilizo nenhuma injeção de DLL ou alteração de dados de memória, apenas recursos nativos do windows para automatizar.
-A análise de da digital é totalmente propicia a falha, ele apenas te indica um possível resultado para facilitar.***
+A análise da digital é totalmente propicia a falha, ele apenas te indica um possível resultado para facilitar.***
 
 NOTAS:
 Antes de utilizar a ferramenta de análise da digital, faça o download das imagens das digitais que são apenas verdadeiras, segue o link:
