@@ -1,6 +1,6 @@
 # MacetimTools
 
-Ferramenta para o GTA V online
+# Ferramenta para o GTA V online
 
 Esse programa não é um hack, e não tenho intenção de fazer um, 
 o MacetimTools é apenas uma ferramenta que tem a seguintes funcionalidades:
@@ -26,7 +26,7 @@ Descompacte o "imagem_source_true.rar" e coloque APENAS as imagens na pasta cria
 OBS: A análise da digital APENAS FUNCIONA com a resolução 1920x1080 full screen. Futuramente adicionarei suporte a demais resoluções.
 Lembrando que é apenas uma BETA.
 
-Notas da versão v1.2c - BETA:
+## Notas da versão v1.2c - BETA:
 
 * Corrigido o problema do programa fechar sozinho depois de um longo tempo em aberto.
 
