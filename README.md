@@ -1,16 +1,17 @@
 # MacetimTools
+
 Ferramenta para o GTA V online
 
 Esse programa não é um hack, e não tenho intenção de fazer um, 
 o MacetimTools é apenas uma ferramenta que tem a seguintes funcionalidades:
 
--> Suspender o processo do GTA5 para poder ficar solo na sessão pública. 
+* Suspender o processo do GTA5 para poder ficar solo na sessão pública. 
 Pressione a hotkey ALT+F12
 
--> Desconectar internet e reconectar para poder cancelar alguma invasão de esquema, cancelar alguma missão ou até mesmo "escolher" carro na roleta do cassino.
+* Desconectar internet e reconectar para poder cancelar alguma invasão de esquema, cancelar alguma missão ou até mesmo "escolher" carro na roleta do cassino.
 Pressione a hotkey ALT+F9
 
--> Análise do mini game da "digital do Lester" da Heist do Diamond Cassino, ele compara a digital com as verdadeiras e te fala qual é possível correta.
+* Análise do mini game da "digital do Lester" da Heist do Diamond Cassino, ele compara a digital com as verdadeiras e te fala qual é possível correta.
 Pressione a hotkey ALT+F1
 
 Note, não utilizo nenhuma injeção de DLL ou alteração de dados de memória, apenas recursos nativos do windows para automatizar.
@@ -27,6 +28,6 @@ Lembrando que é apenas uma BETA.
 
 Notas da versão v1.2c - BETA:
 
--> Corrigido o problema do programa fechar sozinho depois de um longo tempo em aberto.
+* Corrigido o problema do programa fechar sozinho depois de um longo tempo em aberto.
 
--> Números da digital foram ordenados de forma crescente.
+* Números da digital foram ordenados de forma crescente.
