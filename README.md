@@ -29,6 +29,7 @@ OBS: A análise da digital **APENAS FUNCIONA** com a resolução 1920x1080 full 
 Lembrando que é apenas uma BETA.
 
 ## Task Lists
+- [ ] Criar de forma simples e otimizada sessão pública solo a partir do firewall adicionando regas.
 - [ ] Criar uma GDI opcional para o minigame do cassino que rode apenas em modo janela.
 - [ ] Criar uma cronometro interativo.
 - [ ] Criar um identificador de rede no qual o usuário está conectado no momento e setar como padrão.
