@@ -23,10 +23,15 @@ Antes de utilizar a ferramenta de análise da digital, faça o download das imag
 [Google Drive](https://drive.google.com/file/d/1jazL9dBK69CcO_r6zA5dZ8lsp4Msy2X_/view?usp=sharing)
 
 Após abrir o MacetimTools, ele vai criar uma pasta em: "C:\Program Files\Macetim"
-Descompacte o "imagem_source_true.rar" e coloque APENAS as imagens na pasta criada com o nome de "True". Pronto.
+descompacte o "imagem_source_true.rar" e coloque APENAS as imagens na pasta criada com o nome de "True". Pronto.
 
 OBS: A análise da digital **APENAS FUNCIONA** com a resolução 1920x1080 full screen. Futuramente adicionarei suporte a demais resoluções.
 Lembrando que é apenas uma BETA.
+
+## Task Lists
+- [ ] Criar uma GDI opcional para o minigame do cassino que rode apenas em modo janela.
+- [ ] Criar uma cronometro interativo.
+- [ ] Criar um identificador de rede no qual o usuário está conectado no momento e setar como padrão.
 
 ## Notas da versão v1.2c - BETA:
 
