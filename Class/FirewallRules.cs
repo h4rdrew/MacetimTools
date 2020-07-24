@@ -12,21 +12,43 @@ namespace MacetimTools.Class
         public static bool indicador = false;
         public static void FirewallAddRule()
         {
+            for (int i = 0; i < 2; i++)
+            {
+                if (i == 0)
+                {
+                    INetFwRule firewallRule = (INetFwRule)Activator.CreateInstance(
+                        Type.GetTypeFromProgID("HNetCfg.FWRule"));
 
-            INetFwRule firewallRule = (INetFwRule)Activator.CreateInstance(
-                Type.GetTypeFromProgID("HNetCfg.FWRule"));
+                    firewallRule.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK;
+                    firewallRule.Description = "Used to block all internet access.";
+                    firewallRule.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_OUT;
+                    firewallRule.Enabled = false;
+                    firewallRule.InterfaceTypes = "All";
+                    firewallRule.Name = "Block Internet";
 
-            firewallRule.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK;
-            firewallRule.Description = "Used to block all internet access.";
-            firewallRule.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_OUT;
-            firewallRule.Enabled = false;
-            firewallRule.InterfaceTypes = "All";
-            firewallRule.Name = "Block Internet";
+                    INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(
+                        Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
 
-            INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(
-                Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
-            firewallPolicy.Rules.Add(firewallRule);
+                    firewallPolicy.Rules.Add(firewallRule);
+                }
+                if (i == 1)
+                {
+                    INetFwRule firewallRule = (INetFwRule)Activator.CreateInstance(
+                        Type.GetTypeFromProgID("HNetCfg.FWRule"));
 
+                    firewallRule.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK;
+                    firewallRule.Description = "Used to block all internet access.";
+                    firewallRule.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_IN;
+                    firewallRule.Enabled = false;
+                    firewallRule.InterfaceTypes = "All";
+                    firewallRule.Name = "Block Internet";
+
+                    INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(
+                        Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
+
+                    firewallPolicy.Rules.Add(firewallRule);
+                }
+            }
             CheckRules();
         }
         public static void CheckRules(string RuleName = "Block Internet")
@@ -43,7 +65,7 @@ namespace MacetimTools.Class
                 if (rule.Name.IndexOf(RuleName) != -1)
                 {
                     indicador = true;
-                    break;
+                    //break;
                 }
             }
             if (indicador == false)

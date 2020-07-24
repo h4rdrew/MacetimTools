@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Notas));
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -37,9 +36,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(398, 104);
+            this.label1.Size = new System.Drawing.Size(151, 39);
             this.label1.TabIndex = 1;
-            this.label1.Text = resources.GetString("label1.Text");
+            this.label1.Text = "Nota da versão 1.3 - BETA: \r\n\r\n---> EM DESENVOLVIMENTO";
             // 
             // Notas
             // 
