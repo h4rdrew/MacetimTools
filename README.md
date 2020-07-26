@@ -36,6 +36,7 @@ Lembrando que é apenas uma BETA.
 ## Notas da versão v1.3 - BETA:
 
 * Método de desconectar a internet via Firewall
+
 OBS: Quando útilizado o método de desconectar a internet via Firewall, você não é expulso da sessão
 apenas todos da sessão atual. Essa funcionalidade está em teste, uma vez que é habilitado
 ele não ativa a funcionalidade de desconetar a rede "Ethernet".
