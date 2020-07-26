@@ -29,7 +29,7 @@ Lembrando que é apenas uma BETA.
 ## Task Lists
 - [ ] Desconectar a internet desativando o dispositivo a ser selecionado.
 - [ ] Criar de forma simples e otimizada sessão pública solo a partir do firewall adicionando regas.
-- [ ] GDI opcional para o minigame do cassino que rode apenas em modo janela.
+- [ ] GDI opcional para o minigame do cassino que funcione apenas em modo janela.
 - [ ] Cronômetro interativo.
 - [ ] Identificador de rede no qual o usuário está conectado no momento e setar como padrão.
 
