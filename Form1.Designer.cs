@@ -1,4 +1,4 @@
-﻿namespace MacetimTools
+namespace MacetimTools
 {
     partial class Form1
     {

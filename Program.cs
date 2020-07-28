@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
 
 namespace MacetimTools
@@ -18,5 +15,5 @@ namespace MacetimTools
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
-    }   
+    }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace MacetimTools
 {
     public partial class Form1 : Form
-    {
+    { 
         HH_Lib hwh = new HH_Lib();
         List<DEVICE_INFO> HardwareList;
         KeyboardHook hook = new KeyboardHook();
@@ -48,12 +48,12 @@ namespace MacetimTools
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F1); //Macetim da Digital
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F9); //Desconectar a internet (rede Ethernet por enquanto) e reconectar depois de 3sec
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F10);
-            hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F12);  //Macetim de ficar solo na sessão
+            hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F12);  //Macetim de ficar solo na sess�o
 
             ReloadHardwareList();
 
             hwh.HookHardwareNotifications(this.Handle, true);
-
+            int a = 1 + 1;
             GetSettings();
         }
         protected override void WndProc(ref Message m)
