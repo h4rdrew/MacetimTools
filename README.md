@@ -33,10 +33,14 @@ Lembrando que é apenas uma BETA.
 - [ ] Cronômetro interativo.
 - [ ] Identificador de rede no qual o usuário está conectado no momento e setar como padrão.
 
-## Notas da versão v1.3 - BETA:
+## Notas da versão v1.4 - BETA: 
 
-* Método de desconectar a internet via Firewall
+* Nova feature: Desconectar a Internet desabilitando o dispositivo
 
-OBS: Quando útilizado o método de desconectar a internet via Firewall, você não é expulso da sessão
-apenas todos da sessão atual. Essa funcionalidade está em teste, uma vez que é habilitado
-ele não ativa a funcionalidade de desconetar a rede "Ethernet".
+* Firewall feature foi movida como funcionalidade em ficar solo na sessão
+
+Ambas são features opcionais e estão em teste. 
+
+OBS: A feature de desabilitar o dispositivo pode ser que não funcione na primeira vez que abre o programa, reinicie o programa, 
+teste com algum dispositivo que não vai prejudicar seu sistema antes de usar em game.
+A opção por firewall aparentemente está funcional para ficar solo na sessão.
