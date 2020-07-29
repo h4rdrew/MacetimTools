@@ -15,6 +15,8 @@ o MacetimTools é apenas uma ferramenta que tem a seguintes funcionalidades:
 A análise da digital é totalmente propicia a falha, ele apenas compara a imagem atual do mini game e 
 te indica um possível resultado para facilitar.***
 
+![alt text](https://i.imgur.com/COCZKKz.png)
+
 NOTAS:
 Antes de utilizar a ferramenta de análise da digital, faça o download das imagens das digitais que são apenas verdadeiras, segue o link:
 
