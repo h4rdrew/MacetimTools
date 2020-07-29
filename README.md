@@ -27,7 +27,7 @@ OBS: A análise da digital **APENAS FUNCIONA** com a resolução 1920x1080 full 
 Lembrando que é apenas uma BETA.
 
 ## Task Lists
-- [ ] Desconectar a internet desativando o dispositivo a ser selecionado.
+- [x] Desconectar a internet desativando o dispositivo a ser selecionado.
 - [ ] Criar de forma simples e otimizada sessão pública solo a partir do firewall adicionando regas.
 - [ ] GDI opcional para o minigame do cassino que funcione apenas em modo janela.
 - [ ] Cronômetro interativo.
