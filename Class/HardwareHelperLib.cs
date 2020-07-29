@@ -170,9 +170,9 @@ namespace HardwareHelperLib
     public struct DEVICE_INFO
     {
         public string name;
-        public string friendlyName;
-        public string hardwareId;
-        public string statusstr;
+        //public string friendlyName;
+        //public string hardwareId;
+        //public string statusstr;
         public DeviceStatus status;
     }
 
@@ -196,9 +196,9 @@ namespace HardwareHelperLib
         //          manager does.  Currently it uses the actual "system" names for the
         //          hardware.  It is also possible to use hardware IDs.  See the docs
         //          for SetupDiGetDeviceRegistryProperty in the MS SDK for more details.
-        public List<DEVICE_INFO> GetAll()
+        public string[] GetAll()
         {
-            List<DEVICE_INFO> HWList = new List<DEVICE_INFO>();
+            List<string> HWList = new List<string>();
             try
             {
                 Guid myGUID = System.Guid.Empty;
@@ -207,47 +207,34 @@ namespace HardwareHelperLib
                     throw new Exception("Invalid Handle");
                 Native.SP_DEVINFO_DATA DeviceInfoData;
                 DeviceInfoData = new Native.SP_DEVINFO_DATA();
-
                 //for 32-bit, IntPtr.Size = 4
                 //for 64-bit, IntPtr.Size = 8
                 if (IntPtr.Size == 4)
                     DeviceInfoData.cbSize = 28;
                 else if (IntPtr.Size == 8)
                     DeviceInfoData.cbSize = 32;
-
                 //is devices exist for class
                 DeviceInfoData.devInst = 0;
                 DeviceInfoData.classGuid = System.Guid.Empty;
                 DeviceInfoData.reserved = 0;
                 UInt32 i;
                 StringBuilder DeviceName = new StringBuilder("");
-                StringBuilder DeviceFriendlyName = new StringBuilder("");
-                StringBuilder DeviceHardwareId = new StringBuilder("");
-                DeviceName.Capacity = DeviceFriendlyName.Capacity = DeviceHardwareId.Capacity = Native.MAX_DEV_LEN;
+                DeviceName.Capacity = Native.MAX_DEV_LEN;
                 for (i = 0; Native.SetupDiEnumDeviceInfo(hDevInfo, i, DeviceInfoData); i++)
                 {
-                    DeviceName.Length = DeviceFriendlyName.Length = DeviceHardwareId.Length = 0;
-
+                    DeviceName.Length = 0;
+                    //Declare vars
                     if (!Native.SetupDiGetDeviceRegistryProperty(hDevInfo, DeviceInfoData, Native.SPDRP_DEVICEDESC, 0, DeviceName, Native.MAX_DEV_LEN, IntPtr.Zero))
                         continue;
-                    Native.SetupDiGetDeviceRegistryProperty(hDevInfo, DeviceInfoData, Native.SPDRP_FRIENDLYNAME, 0, DeviceFriendlyName, Native.MAX_DEV_LEN, IntPtr.Zero);
-                    Native.SetupDiGetDeviceRegistryProperty(hDevInfo, DeviceInfoData, Native.SPDRP_HARDWAREID, 0, DeviceHardwareId, Native.MAX_DEV_LEN, IntPtr.Zero);
-
-                    UInt32 status, problem;
-                    string dstatustr = "";
-                    DeviceStatus deviceStatus = DeviceStatus.Unknown;
-                    if (Native.CM_Get_DevNode_Status(out status, out problem, DeviceInfoData.devInst, 0) == Native.CR_SUCCESS)
-                        deviceStatus = ((status & Native.DN_STARTED) > 0) ? DeviceStatus.Enabled : DeviceStatus.Disabled;
-
-                    HWList.Add(new DEVICE_INFO { name = DeviceName.ToString(), friendlyName = DeviceFriendlyName.ToString(), hardwareId = DeviceHardwareId.ToString(), status = deviceStatus, statusstr = dstatustr });
+                    HWList.Add(DeviceName.ToString());
                 }
                 Native.SetupDiDestroyDeviceInfoList(hDevInfo);
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to enumerate device tree!",ex);
+                throw new Exception("Failed to enumerate device tree!", ex);
             }
-            return HWList;
+            return HWList.ToArray();
         }
         //Name:     SetDeviceState
         //Inputs:   string[],bool
@@ -258,52 +245,63 @@ namespace HardwareHelperLib
         //          tries to match the hardware description against the criteria
         //          passed in.  If a match is found, that device will the be
         //          enabled or disabled based on bEnable.
-        public bool SetDeviceState(DEVICE_INFO deviceToChangeState, bool bEnable)
+        public bool SetDeviceState(string[] match, bool bEnable)
         {
-            Guid myGUID = System.Guid.Empty;
-            IntPtr hDevInfo = Native.SetupDiGetClassDevs(ref myGUID, 0, IntPtr.Zero, Native.DIGCF_ALLCLASSES | Native.DIGCF_PRESENT);
-            if (hDevInfo.ToInt64() == Native.INVALID_HANDLE_VALUE)
-                throw new Exception("Could retrieve handle for device");
-
-            Native.SP_DEVINFO_DATA DeviceInfoData;
-            DeviceInfoData = new Native.SP_DEVINFO_DATA();
-
-            //for 32-bit, IntPtr.Size = 4
-            //for 64-bit, IntPtr.Size = 8
-            if (IntPtr.Size == 4)
-                DeviceInfoData.cbSize = 28;
-            else if (IntPtr.Size == 8)
-                DeviceInfoData.cbSize = 32;
-
-            //is devices exist for class
-            DeviceInfoData.devInst = 0;
-            DeviceInfoData.classGuid = System.Guid.Empty;
-            DeviceInfoData.reserved = 0;
-            UInt32 i;
-            StringBuilder DeviceHardwareId = new StringBuilder("");
-            StringBuilder DeviceFriendlyName = new StringBuilder("");
-            DeviceHardwareId.Capacity = DeviceFriendlyName.Capacity = Native.MAX_DEV_LEN;
-            for (i = 0; Native.SetupDiEnumDeviceInfo(hDevInfo, i, DeviceInfoData); i++)
+            try
             {
-                DeviceFriendlyName.Length = DeviceHardwareId.Length = 0;
-
-                //Declare vars
-                Native.SetupDiGetDeviceRegistryProperty(hDevInfo, DeviceInfoData, Native.SPDRP_HARDWAREID, 0, DeviceHardwareId, Native.MAX_DEV_LEN, IntPtr.Zero);
-                Native.SetupDiGetDeviceRegistryProperty(hDevInfo, DeviceInfoData, Native.SPDRP_FRIENDLYNAME, 0, DeviceFriendlyName, Native.MAX_DEV_LEN, IntPtr.Zero);
-
-                Console.WriteLine(DeviceHardwareId + " -- " + DeviceFriendlyName);
-                if (DeviceHardwareId.ToString().ToLower().Contains(deviceToChangeState.hardwareId.ToLower()) && DeviceFriendlyName.ToString().ToLower().Contains(deviceToChangeState.friendlyName.ToLower()))
+                Guid myGUID = System.Guid.Empty;
+                IntPtr hDevInfo = Native.SetupDiGetClassDevs(ref myGUID, 0, IntPtr.Zero, Native.DIGCF_ALLCLASSES | Native.DIGCF_PRESENT);
+                if (hDevInfo.ToInt64() == Native.INVALID_HANDLE_VALUE)
+                    throw new Exception("Could retrieve handle for device");
+                Native.SP_DEVINFO_DATA DeviceInfoData;
+                DeviceInfoData = new Native.SP_DEVINFO_DATA();
+                //for 32-bit, IntPtr.Size = 4
+                //for 64-bit, IntPtr.Size = 8
+                if (IntPtr.Size == 4)
+                    DeviceInfoData.cbSize = 28;
+                else if (IntPtr.Size == 8)
+                    DeviceInfoData.cbSize = 32;
+                //is devices exist for class
+                DeviceInfoData.devInst = 0;
+                DeviceInfoData.classGuid = System.Guid.Empty;
+                DeviceInfoData.reserved = 0;
+                UInt32 i;
+                StringBuilder DeviceName = new StringBuilder("");
+                DeviceName.Capacity = Native.MAX_DEV_LEN;
+                for (i = 0; Native.SetupDiEnumDeviceInfo(hDevInfo, i, DeviceInfoData); i++)
                 {
-                    Console.WriteLine("Found: " + DeviceFriendlyName);
-                    bool couldChangeState = ChangeIt(hDevInfo, DeviceInfoData, bEnable);
-                    if (!couldChangeState)
-                        throw new Exception("Unable to change " + DeviceFriendlyName + " device state, make sure you have administrator privileges");
-                    break;
+                    //Declare vars
+                    while (!Native.SetupDiGetDeviceRegistryProperty(hDevInfo,
+                                                                    DeviceInfoData,
+                                                                    Native.SPDRP_DEVICEDESC,
+                                                                    0,
+                                                                    DeviceName,
+                                                                    Native.MAX_DEV_LEN,
+                                                                    IntPtr.Zero))
+                    {
+                        break; //Skip
+                    }
+                    bool bMatch = true;
+                    foreach (string search in match)
+                    {
+                        if (!DeviceName.ToString().ToLower().Contains(search.ToLower()))
+                        {
+                            bMatch = false;
+                            break;
+                        }
+                    }
+                    if (bMatch)
+                    {
+                        ChangeIt(hDevInfo, DeviceInfoData, bEnable);
+                    }
                 }
+                Native.SetupDiDestroyDeviceInfoList(hDevInfo);
             }
-
-            Native.SetupDiDestroyDeviceInfoList(hDevInfo);
-
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to enumerate device tree!", ex);
+                return false;
+            }
             return true;
         }
         //Name:     HookHardwareNotifications

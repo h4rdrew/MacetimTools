@@ -29,8 +29,6 @@ namespace MacetimTools
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -38,24 +36,19 @@ namespace MacetimTools
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.listdevices = new System.Windows.Forms.ListView();
-            this.CommonName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.FriendlyName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.HardwareId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -66,7 +59,7 @@ namespace MacetimTools
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Yellow;
-            this.label3.Location = new System.Drawing.Point(146, 301);
+            this.label3.Location = new System.Drawing.Point(379, 356);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 13);
             this.label3.TabIndex = 15;
@@ -77,7 +70,7 @@ namespace MacetimTools
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Yellow;
-            this.label2.Location = new System.Drawing.Point(109, 265);
+            this.label2.Location = new System.Drawing.Point(342, 320);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(126, 24);
             this.label2.TabIndex = 14;
@@ -90,13 +83,14 @@ namespace MacetimTools
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.button3.Location = new System.Drawing.Point(80, 28);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(132, 60);
+            this.button3.Size = new System.Drawing.Size(132, 36);
             this.button3.TabIndex = 2;
             this.button3.Text = "Suspend and Resume in 10sec";
             this.button3.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.button2.ForeColor = System.Drawing.Color.Black;
             this.button2.Location = new System.Drawing.Point(6, 28);
@@ -109,6 +103,7 @@ namespace MacetimTools
             // 
             // button1
             // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Location = new System.Drawing.Point(6, 61);
@@ -131,49 +126,60 @@ namespace MacetimTools
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.checkBox2);
             this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
             this.groupBox2.ForeColor = System.Drawing.Color.Yellow;
             this.groupBox2.Location = new System.Drawing.Point(9, 140);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(227, 122);
+            this.groupBox2.Size = new System.Drawing.Size(227, 174);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Cassino Free Car";
+            this.groupBox2.Text = "Network Disable";
             // 
-            // checkBox1
+            // checkBox2
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(10, 28);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(61, 17);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Firewall";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox2.Location = new System.Drawing.Point(9, 89);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(60, 17);
+            this.checkBox2.TabIndex = 8;
+            this.checkBox2.Text = "Device";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Yellow;
-            this.label5.Location = new System.Drawing.Point(7, 51);
+            this.label5.Location = new System.Drawing.Point(7, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(140, 16);
             this.label5.TabIndex = 6;
             this.label5.Text = "Network default name:";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(9, 112);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(211, 24);
+            this.comboBox1.TabIndex = 22;
+            // 
             // textBox1
             // 
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(10, 70);
+            this.textBox1.Location = new System.Drawing.Point(10, 47);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(196, 26);
+            this.textBox1.Size = new System.Drawing.Size(211, 26);
             this.textBox1.TabIndex = 5;
             this.textBox1.Text = "Ethernet";
             // 
@@ -182,14 +188,27 @@ namespace MacetimTools
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(6, 99);
+            this.label4.Location = new System.Drawing.Point(6, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(200, 20);
             this.label4.TabIndex = 4;
             this.label4.Text = "Press ALT + F9 in game";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(80, 71);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(61, 17);
+            this.checkBox1.TabIndex = 7;
+            this.checkBox1.Text = "Firewall";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
@@ -239,7 +258,7 @@ namespace MacetimTools
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(8, 288);
+            this.button4.Location = new System.Drawing.Point(9, 351);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 19;
@@ -247,97 +266,36 @@ namespace MacetimTools
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(8, 330);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(460, 21);
-            this.comboBox1.TabIndex = 22;
-            // 
-            // listdevices
-            // 
-            this.listdevices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.CommonName,
-            this.FriendlyName,
-            this.HardwareId,
-            this.Status});
-            this.listdevices.FullRowSelect = true;
-            this.listdevices.HideSelection = false;
-            this.listdevices.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem5,
-            listViewItem6});
-            this.listdevices.Location = new System.Drawing.Point(474, 12);
-            this.listdevices.MultiSelect = false;
-            this.listdevices.Name = "listdevices";
-            this.listdevices.Size = new System.Drawing.Size(861, 623);
-            this.listdevices.TabIndex = 23;
-            this.listdevices.UseCompatibleStateImageBehavior = false;
-            this.listdevices.View = System.Windows.Forms.View.Details;
-            // 
-            // CommonName
-            // 
-            this.CommonName.Text = "Name";
-            this.CommonName.Width = 236;
-            // 
-            // FriendlyName
-            // 
-            this.FriendlyName.Text = "Friendly Name";
-            this.FriendlyName.Width = 235;
-            // 
-            // HardwareId
-            // 
-            this.HardwareId.Text = "Hardware Id";
-            this.HardwareId.Width = 270;
-            // 
-            // Status
-            // 
-            this.Status.Text = "Status";
-            this.Status.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Status.Width = 93;
-            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(8, 357);
+            this.button5.Location = new System.Drawing.Point(9, 320);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(89, 29);
             this.button5.TabIndex = 24;
             this.button5.Text = "Enable";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(103, 357);
+            this.button6.Location = new System.Drawing.Point(104, 320);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(89, 29);
             this.button6.TabIndex = 25;
             this.button6.Text = "Disable";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(11, 389);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 13);
-            this.label6.TabIndex = 26;
-            this.label6.Text = "XX Devices Attached";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1357, 654);
-            this.Controls.Add(this.label6);
+            this.ClientSize = new System.Drawing.Size(488, 380);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.listdevices);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox2);
@@ -349,7 +307,7 @@ namespace MacetimTools
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Macetim v1.3 - BETA";
+            this.Text = "Macetim v1.4 - BETA";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -384,14 +342,9 @@ namespace MacetimTools
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ListView listdevices;
-        private System.Windows.Forms.ColumnHeader CommonName;
-        private System.Windows.Forms.ColumnHeader FriendlyName;
-        private System.Windows.Forms.ColumnHeader HardwareId;
-        private System.Windows.Forms.ColumnHeader Status;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
 

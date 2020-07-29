@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Notas));
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -36,17 +37,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 39);
+            this.label1.Size = new System.Drawing.Size(361, 91);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Nota da versão 1.3 - BETA: \r\n\r\n---> EM DESENVOLVIMENTO";
+            this.label1.Text = resources.GetString("label1.Text");
             // 
             // Notas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(424, 131);
+            this.ClientSize = new System.Drawing.Size(387, 114);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Notas";
             this.Text = "Notas";
