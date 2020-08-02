@@ -18,8 +18,6 @@ namespace MacetimTools
         KeyboardHook hook = new KeyboardHook();
         ComparateImage comparate = new ComparateImage();
         FirewallRules firewall = new FirewallRules();
-        public static bool vf = false;
-        public static bool vf2 = false;
         public Form1()
         {
             InitializeComponent();
@@ -39,41 +37,18 @@ namespace MacetimTools
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F10);
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F12);  //Macetim de ficar solo na sessão
 
-            string[] HardwareList = hwh.GetAll();
-            foreach (string s in HardwareList)
-            {
-                comboBox1.Items.Add(s);
-            }
-
-            hwh.HookHardwareNotifications(this.Handle, true);
-            comboBox1.Enabled = false;
             GetSettings();
-        }
-        protected override void WndProc(ref Message m)
-        {
-            switch (m.Msg)
-            {
-                case HardwareHelperLib.Native.WM_DEVICECHANGE:
-                    {
-                        if (m.WParam.ToInt32() == HardwareHelperLib.Native.DBT_DEVNODES_CHANGED)
-                        {
-                            //comboBox1.Items.Clear();
-                            string[] HardwareList = hwh.GetAll();
-                            foreach (string s in HardwareList)
-                            {
-                                comboBox1.Items.Add(s);
-                            }
-                        }
-                        break;
-                    }
-            }
-            base.WndProc(ref m);
+
         }
         public void GetSettings()
         {
             checkBox1.Checked = Properties.Settings.Default.cb1;
             checkBox2.Checked = Properties.Settings.Default.cb2;
-            comboBox1.SelectedIndex = Properties.Settings.Default.cbox1;
+            if(checkBox2.Checked == true)
+            {
+                DisableDevice();
+                comboBox1.SelectedIndex = Properties.Settings.Default.cbox1;
+            }
         }
         void hook_KeyPressed(object sender, KeyPressedEventArgs e)
         {
@@ -88,7 +63,7 @@ namespace MacetimTools
             if (e.Modifier == GlobalHotKey.ModifierKeys.Alt && e.Key == Keys.F9)
             {
                 string[] devices = new string[1];
-                if (vf2 == true)
+                if (checkBox2.Checked == true)
                 {
                     //Disable
                     hwh.CutLooseHardwareNotifications(this.Handle);
@@ -112,7 +87,7 @@ namespace MacetimTools
             }
             if (e.Modifier == GlobalHotKey.ModifierKeys.Alt && e.Key == Keys.F12)
             {
-                if (vf == true)
+                if (checkBox1.Checked == true)
                 {
                     CheckRules();
                     if (indicador == true)
@@ -131,6 +106,36 @@ namespace MacetimTools
                     StopProcess.ResumeProcess(teste);
                 }
             }
+        }
+        public void DisableDevice()
+        {
+            string[] HardwareList = hwh.GetAll();
+            foreach (string s in HardwareList)
+            {
+                comboBox1.Items.Add(s);
+            }
+
+            hwh.HookHardwareNotifications(this.Handle, true);
+        }
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case HardwareHelperLib.Native.WM_DEVICECHANGE:
+                    {
+                        if (m.WParam.ToInt32() == HardwareHelperLib.Native.DBT_DEVNODES_CHANGED)
+                        {
+                            //comboBox1.Items.Clear();
+                            string[] HardwareList = hwh.GetAll();
+                            foreach (string s in HardwareList)
+                            {
+                                comboBox1.Items.Add(s);
+                            }
+                        }
+                        break;
+                    }
+            }
+            base.WndProc(ref m);
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -157,24 +162,6 @@ namespace MacetimTools
             Notas notas = new Notas();
             notas.Show();
         }
-        private void button5_Click(object sender, EventArgs e)
-        {
-            //Enable
-            string[] devices = new string[1];
-            hwh.CutLooseHardwareNotifications(this.Handle);
-            devices[0] = comboBox1.SelectedItem.ToString();
-            hwh.SetDeviceState(devices, true);
-            hwh.HookHardwareNotifications(this.Handle, true);
-        }
-        private void button6_Click(object sender, EventArgs e)
-        {
-            //Disable
-            string[] devices = new string[1];
-            hwh.CutLooseHardwareNotifications(this.Handle);
-            devices[0] = comboBox1.SelectedItem.ToString();
-            hwh.SetDeviceState(devices, false);
-            hwh.HookHardwareNotifications(this.Handle, true);
-        }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked == true)
@@ -182,27 +169,24 @@ namespace MacetimTools
                 button1.Enabled = false;
                 button2.Enabled = false;
                 button3.Enabled = false;
-                vf = true;
             }
             else
             {
                 button1.Enabled = true;
                 button2.Enabled = true;
                 button3.Enabled = true;
-                vf = false;
             }
         }
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox2.Checked == true)
             {
+                DisableDevice();
                 comboBox1.Enabled = true;
-                vf2 = true;
             }
             else
             {
                 comboBox1.Enabled = false;
-                vf2 = false;
             }
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
