@@ -15,6 +15,8 @@ o MacetimTools é apenas uma ferramenta que tem a seguintes funcionalidades:
 A análise da digital é totalmente propicia a falha, ele apenas compara a imagem atual do mini game e 
 te indica um possível resultado para facilitar.***
 
+![alt text](https://i.imgur.com/COCZKKz.png)
+
 NOTAS:
 Antes de utilizar a ferramenta de análise da digital, faça o download das imagens das digitais que são apenas verdadeiras, segue o link:
 
@@ -27,16 +29,20 @@ OBS: A análise da digital **APENAS FUNCIONA** com a resolução 1920x1080 full 
 Lembrando que é apenas uma BETA.
 
 ## Task Lists
-- [ ] Desconectar a internet desativando o dispositivo a ser selecionado.
+- [x] Desconectar a internet desativando o dispositivo a ser selecionado.
 - [ ] Criar de forma simples e otimizada sessão pública solo a partir do firewall adicionando regas.
 - [ ] GDI opcional para o minigame do cassino que funcione apenas em modo janela.
 - [ ] Cronômetro interativo.
 - [ ] Identificador de rede no qual o usuário está conectado no momento e setar como padrão.
 
-## Notas da versão v1.3 - BETA:
+## Notas da versão v1.4 - BETA: 
 
-* Método de desconectar a internet via Firewall
+* Nova feature: Desconectar a Internet desabilitando o dispositivo
 
-OBS: Quando útilizado o método de desconectar a internet via Firewall, você não é expulso da sessão
-apenas todos da sessão atual. Essa funcionalidade está em teste, uma vez que é habilitado
-ele não ativa a funcionalidade de desconetar a rede "Ethernet".
+* Firewall feature foi movida como funcionalidade em ficar solo na sessão
+
+Ambas são features opcionais e estão em teste. 
+
+OBS: A feature de desabilitar o dispositivo pode ser que não funcione na primeira vez que abre o programa, reinicie o programa, 
+teste com algum dispositivo que não vai prejudicar seu sistema antes de usar em game.
+A opção por firewall aparentemente está funcional para ficar solo na sessão.
