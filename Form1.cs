@@ -9,6 +9,8 @@ using static MacetimTools.Class.DisableEthernet;
 using static MacetimTools.Class.FirewallRules;
 using HardwareHelperLib;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Reflection;
 
 namespace MacetimTools
 {
@@ -107,9 +109,18 @@ namespace MacetimTools
                         FirewallSet(false, "Block Internet");
                     }
                 }
-                if(radioButton3.Checked == true)
+                if (radioButton3.Checked == true)
                 {
-                    FirewallSet(true, "ATest");
+                    if (FirewallCheckStatus("ATest") == true)
+                    {
+                        FirewallSet(false, "ATest");
+                        pictureBox2.Image = MacetimTools.Properties.Resources.uncheck;
+                    }
+                    else
+                    {
+                        FirewallSet(true, "ATest");
+                        pictureBox2.Image = MacetimTools.Properties.Resources.check;
+                    }
                 }
             }
         }
@@ -175,10 +186,21 @@ namespace MacetimTools
                 groupBox4.Enabled = true;
                 IpVerf();
                 refreshList();
+                if(FirewallCheckStatus("Atest") == true)
+                {
+                    pictureBox2.Visible = true;
+                    pictureBox2.Image = MacetimTools.Properties.Resources.check;
+                }
+                else
+                {
+                    pictureBox2.Visible = true;
+                    pictureBox2.Image = MacetimTools.Properties.Resources.uncheck;
+                }
             }
             else
             {
                 groupBox4.Enabled = false;
+                pictureBox2.Visible = false;
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -215,5 +237,5 @@ namespace MacetimTools
             Properties.Settings.Default.radb3 = radioButton3.Checked;
             Properties.Settings.Default.Save();
         }
-        }
+    }
 }

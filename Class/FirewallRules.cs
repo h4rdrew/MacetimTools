@@ -139,6 +139,22 @@ namespace MacetimTools.Class
                 }
             }
         }
+        public static bool FirewallCheckStatus(string RuleName)
+        {
+            try
+            {
+                INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
+                var rule = firewallPolicy.Rules.Item(RuleName);
+
+                bool cStatus = rule.Enabled;
+
+                return cStatus;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public static void IpA()
         {
             INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));

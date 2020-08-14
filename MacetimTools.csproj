@@ -160,6 +160,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mds.ico" />
+    <None Include="Resources\uncheck.png" />
+    <None Include="Resources\check.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
