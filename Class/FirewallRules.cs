@@ -18,7 +18,7 @@ namespace MacetimTools.Class
         {
             int option = 0;
 
-            if(RuleName == "ATest")
+            if(RuleName == "GTASoloFriends")
             {
                 option = 1;
             }
@@ -91,7 +91,7 @@ namespace MacetimTools.Class
                 if (rule.Name.IndexOf(RuleName) != -1)
                 {
                     indicador = true;
-                    if(RuleName == "ATest")
+                    if(RuleName == "GTASoloFriends")
                     {
                         INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
                         string aux = rule.RemoteAddresses;
@@ -110,7 +110,7 @@ namespace MacetimTools.Class
             }
             if (indicador == false)
             {
-                if (RuleName == "ATest") 
+                if (RuleName == "GTASoloFriends") 
                 {
                     FirewallAddRule(RuleName);
                     IpA();
@@ -158,7 +158,7 @@ namespace MacetimTools.Class
         public static void IpA()
         {
             INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
-            var rule = firewallPolicy.Rules.Item("ATest");
+            var rule = firewallPolicy.Rules.Item("GTASoloFriends");
             string[] blocks = new string[4];
 
             blocks = ipV4.Split('.');
@@ -200,7 +200,7 @@ namespace MacetimTools.Class
             try
             {
                 INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
-                var rule = firewallPolicy.Rules.Item("ATest");
+                var rule = firewallPolicy.Rules.Item("GTASoloFriends");
 
                 string aux = rule.RemoteAddresses;
                 string[] blocks;
@@ -259,29 +259,6 @@ namespace MacetimTools.Class
         }
         public static void IpRemove(int ipRemove)
         {
-            //INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
-            //var rule = firewallPolicy.Rules.Item("ATest");
-            //string aux = rule.RemoteAddresses;
-            //string[] blocks;
-            //List<string> myList = new List<string>();
-            //blocks = aux.Split(',');
-
-            //for (int i = 0; i < blocks.Length; i++)
-            //{
-            //    myList.Add(blocks[i]);
-            //}
-
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    myList.RemoveAt(ipRemove * 2);
-            //}
-
-            //aux = string.Join(",", myList.ToArray());
-            //rule.RemoteAddresses = aux;
-            //IpVerf();
-
-            //-------------------------------------------------
-
             Type tNetFwPolicy2 = Type.GetTypeFromProgID("HNetCfg.FwPolicy2");
             INetFwPolicy2 fwPolicy2 = (INetFwPolicy2)Activator.CreateInstance(tNetFwPolicy2);
             var currentProfiles = fwPolicy2.CurrentProfileTypes;
@@ -290,7 +267,7 @@ namespace MacetimTools.Class
             List<INetFwRule> RuleList = new List<INetFwRule>();
             foreach (INetFwRule rule in fwPolicy2.Rules)
             {
-                if (rule.Name.IndexOf("ATest") != -1)
+                if (rule.Name.IndexOf("GTASoloFriends") != -1)
                 {
                     string aux = rule.RemoteAddresses;
                     string[] blocks;

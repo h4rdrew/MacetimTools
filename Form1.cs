@@ -111,14 +111,14 @@ namespace MacetimTools
                 }
                 if (radioButton3.Checked == true)
                 {
-                    if (FirewallCheckStatus("ATest") == true)
+                    if (FirewallCheckStatus("GTASoloFriends") == true)
                     {
-                        FirewallSet(false, "ATest");
+                        FirewallSet(false, "GTASoloFriends");
                         pictureBox2.Image = MacetimTools.Properties.Resources.uncheck;
                     }
                     else
                     {
-                        FirewallSet(true, "ATest");
+                        FirewallSet(true, "GTASoloFriends");
                         pictureBox2.Image = MacetimTools.Properties.Resources.check;
                     }
                 }
@@ -186,7 +186,7 @@ namespace MacetimTools
                 groupBox4.Enabled = true;
                 IpVerf();
                 refreshList();
-                if(FirewallCheckStatus("Atest") == true)
+                if(FirewallCheckStatus("GTASoloFriends") == true)
                 {
                     pictureBox2.Visible = true;
                     pictureBox2.Image = MacetimTools.Properties.Resources.check;
@@ -209,7 +209,7 @@ namespace MacetimTools
                 return;
 
             ipV4 = textBox2.Text;
-            CheckRules("ATest");
+            CheckRules("GTASoloFriends");
             IpVerf();
             textBox2.Clear();
             textBox2.Focus();
