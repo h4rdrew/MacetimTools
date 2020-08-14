@@ -35,7 +35,7 @@ Lembrando que é apenas uma BETA.
 - [ ] Cronômetro interativo.
 - [ ] Identificador de rede no qual o usuário está conectado no momento e setar como padrão.
 
-## Notas da versão v1.4 - BETA: 
+## Notas da versão v1.5a - BETA: 
 
 * Nova feature: Sessão pública solo apenas com amigos a partir de regra de firewall, uma vez que é ativado você vera uma lista para poder adicionar o IP de seus amigos.
 
