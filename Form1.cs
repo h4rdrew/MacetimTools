@@ -16,7 +16,7 @@ namespace MacetimTools
 {
     public partial class Form1 : Form
     {
-        public static string ipV4;
+        public static string ipV4, exWay, networkName;
         public static int ipIndex = 0;
         HH_Lib hwh = new HH_Lib();
         KeyboardHook hook = new KeyboardHook();
@@ -48,6 +48,9 @@ namespace MacetimTools
             radioButton2.Checked = Properties.Settings.Default.radb2;
             radioButton3.Checked = Properties.Settings.Default.radb3;
             checkBox2.Checked = Properties.Settings.Default.cb2;
+            textBox3.Text = Properties.Settings.Default.txtbx3;
+            textBox1.Text = Properties.Settings.Default.txtbx1;
+
             if(checkBox2.Checked == true)
             {
                 DisableDevice();
@@ -84,9 +87,9 @@ namespace MacetimTools
                 }
                 else
                 {
-                    DisableAdapter("Ethernet");
+                    DisableAdapter(networkName);
                     System.Threading.Thread.Sleep(3000);
-                    EnableAdapter("Ethernet");
+                    EnableAdapter(networkName);
                 }
             }
             if (e.Modifier == GlobalHotKey.ModifierKeys.Alt && e.Key == Keys.F12)
@@ -163,11 +166,13 @@ namespace MacetimTools
         {
             if (checkBox2.Checked == true)
             {
+                textBox1.Enabled = false;
                 DisableDevice();
                 comboBox1.Enabled = true;
             }
             else
             {
+                textBox1.Enabled = true;
                 comboBox1.Enabled = false;
             }
         }
@@ -205,9 +210,10 @@ namespace MacetimTools
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox2.Text))
-                return;
-
+            if (string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
+                
+            return;
+            exWay = textBox3.Text;
             ipV4 = textBox2.Text;
             CheckRules("GTASoloFriends");
             IpVerf();
@@ -235,6 +241,8 @@ namespace MacetimTools
             Properties.Settings.Default.radb1 = radioButton1.Checked;
             Properties.Settings.Default.radb2 = radioButton2.Checked;
             Properties.Settings.Default.radb3 = radioButton3.Checked;
+            Properties.Settings.Default.txtbx3 = textBox3.Text;
+            Properties.Settings.Default.txtbx1 = textBox1.Text;
             Properties.Settings.Default.Save();
         }
     }

@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label1.Text" xml:space="preserve">
-    <value>Nota da versão 1.5a - BETA: 
+    <value>Nota da versão 1.5b - BETA: 
 
 ---&gt; Nova feature: Filtrar a sessão pública apenas com os IPs permitidos
-|
-|
----&gt; É criado uma regra no firewall para que apenas o IP dos seus amigos
+        -&gt;É criado uma regra no firewall para que apenas o IP dos seus amigos
 consiga acessar.
+
+---&gt; Agora você pode setar qual nome de rede você está.
 -----------------------------------------------------
 Funcionalidade não testada totalmente in game. </value>
   </data>

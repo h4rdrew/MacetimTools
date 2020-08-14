@@ -82,5 +82,29 @@ namespace MacetimTools.Properties {
                 this["radb3"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string txtbx3 {
+            get {
+                return ((string)(this["txtbx3"]));
+            }
+            set {
+                this["txtbx3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string txtbx1 {
+            get {
+                return ((string)(this["txtbx1"]));
+            }
+            set {
+                this["txtbx1"] = value;
+            }
+        }
     }
 }

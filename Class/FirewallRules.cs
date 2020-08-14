@@ -38,8 +38,7 @@ namespace MacetimTools.Class
                     if(option == 1)
                     {
                         firewallRule.Protocol = 17;
-                        //firewallRule.RemoteAddresses = $"0.0.0.0-{ipNeg},{ipPos}-255.255.255.255";
-                        firewallRule.ApplicationName = @"C:\Program Files\Epic Games\GTAV\GTA5.exe";
+                        firewallRule.ApplicationName = $@"{exWay}";
                         firewallRule.LocalPorts = "6672";
                     }
                     firewallRule.Name = RuleName;
@@ -62,8 +61,7 @@ namespace MacetimTools.Class
                     if (option == 1)
                     {
                         firewallRule.Protocol = 17;
-                        //firewallRule.RemoteAddresses = $"0.0.0.0-{ipNeg},{ipPos}-255.255.255.255";
-                        firewallRule.ApplicationName = @"C:\Program Files\Epic Games\GTAV\GTA5.exe";
+                        firewallRule.ApplicationName = $@"{exWay}";
                         firewallRule.LocalPorts = "6672";
                     }
                     firewallRule.Name = RuleName;
@@ -84,7 +82,6 @@ namespace MacetimTools.Class
             INetFwPolicy2 fwPolicy2 = (INetFwPolicy2)Activator.CreateInstance(tNetFwPolicy2);
             var currentProfiles = fwPolicy2.CurrentProfileTypes;
 
-            // Lista rules
             List<INetFwRule> RuleList = new List<INetFwRule>();
             foreach (INetFwRule rule in fwPolicy2.Rules)
             {
@@ -123,12 +120,10 @@ namespace MacetimTools.Class
         }
         public static void FirewallSet(bool interruptor, string RuleName)
         {
-            //string RuleName = "Block Internet";
             Type tNetFwPolicy2 = Type.GetTypeFromProgID("HNetCfg.FwPolicy2");
             INetFwPolicy2 fwPolicy2 = (INetFwPolicy2)Activator.CreateInstance(tNetFwPolicy2);
             var currentProfiles = fwPolicy2.CurrentProfileTypes;
 
-            // Lista rules
             List<INetFwRule> RuleList = new List<INetFwRule>();
 
             foreach (INetFwRule rule in fwPolicy2.Rules)
@@ -263,7 +258,6 @@ namespace MacetimTools.Class
             INetFwPolicy2 fwPolicy2 = (INetFwPolicy2)Activator.CreateInstance(tNetFwPolicy2);
             var currentProfiles = fwPolicy2.CurrentProfileTypes;
 
-            // Lista rules
             List<INetFwRule> RuleList = new List<INetFwRule>();
             foreach (INetFwRule rule in fwPolicy2.Rules)
             {
