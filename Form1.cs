@@ -13,11 +13,12 @@ using System.Collections.Generic;
 namespace MacetimTools
 {
     public partial class Form1 : Form
-    { 
+    {
+        public static string ipV4;
+        public static int ipIndex = 0;
         HH_Lib hwh = new HH_Lib();
         KeyboardHook hook = new KeyboardHook();
         ComparateImage comparate = new ComparateImage();
-        FirewallRules firewall = new FirewallRules();
         public Form1()
         {
             InitializeComponent();
@@ -38,11 +39,12 @@ namespace MacetimTools
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F12);  //Macetim de ficar solo na sessão
 
             GetSettings();
-
         }
         public void GetSettings()
         {
-            checkBox1.Checked = Properties.Settings.Default.cb1;
+            radioButton1.Checked = Properties.Settings.Default.radb1;
+            radioButton2.Checked = Properties.Settings.Default.radb2;
+            radioButton3.Checked = Properties.Settings.Default.radb3;
             checkBox2.Checked = Properties.Settings.Default.cb2;
             if(checkBox2.Checked == true)
             {
@@ -87,23 +89,27 @@ namespace MacetimTools
             }
             if (e.Modifier == GlobalHotKey.ModifierKeys.Alt && e.Key == Keys.F12)
             {
-                if (checkBox1.Checked == true)
-                {
-                    CheckRules();
-                    if (indicador == true)
-                    {
-                        FirewallSet(true);
-                        System.Threading.Thread.Sleep(10000);
-                        FirewallSet(false);
-                    }
-                }
-                else
+                if (radioButton1.Checked == true)
                 {
                     Process[] remoteByName = Process.GetProcessesByName("GTA5");
                     int teste = remoteByName[0].Id;
                     StopProcess.SuspendProcess(teste);
                     System.Threading.Thread.Sleep(10000);
                     StopProcess.ResumeProcess(teste);
+                }
+                if (radioButton2.Checked == true)
+                {
+                    CheckRules("Block Internet");
+                    if (indicador == true)
+                    {
+                        FirewallSet(true, "Block Internet");
+                        System.Threading.Thread.Sleep(10000);
+                        FirewallSet(false, "Block Internet");
+                    }
+                }
+                if(radioButton3.Checked == true)
+                {
+                    FirewallSet(true, "ATest");
                 }
             }
         }
@@ -137,45 +143,10 @@ namespace MacetimTools
             }
             base.WndProc(ref m);
         }
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            Process[] remoteByName = Process.GetProcessesByName("GTA5");
-            int teste = remoteByName[0].Id;
-            StopProcess.ResumeProcess(teste);
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Process[] remoteByName = Process.GetProcessesByName("GTA5");
-            int teste = remoteByName[0].Id;
-            StopProcess.SuspendProcess(teste);
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Process[] remoteByName = Process.GetProcessesByName("GTA5");
-            int teste = remoteByName[0].Id;
-            StopProcess.SuspendProcess(teste);
-            System.Threading.Thread.Sleep(10000);
-            StopProcess.ResumeProcess(teste);
-        }
         private void button4_Click(object sender, EventArgs e)
         {
             Notas notas = new Notas();
             notas.Show();
-        }
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked == true)
-            {
-                button1.Enabled = false;
-                button2.Enabled = false;
-                button3.Enabled = false;
-            }
-            else
-            {
-                button1.Enabled = true;
-                button2.Enabled = true;
-                button3.Enabled = true;
-            }
         }
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
@@ -189,14 +160,60 @@ namespace MacetimTools
                 comboBox1.Enabled = false;
             }
         }
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButton3.Checked == true)
+            {
+                groupBox4.Enabled = true;
+                IpVerf();
+                refreshList();
+            }
+            else
+            {
+                groupBox4.Enabled = false;
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox2.Text))
+                return;
+
+            ipV4 = textBox2.Text;
+            CheckRules("ATest");
+            IpVerf();
+            textBox2.Clear();
+            textBox2.Focus();
+            refreshList();
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            IpRemove(listBox1.SelectedIndex);
+            refreshList();
+        }
+        public void refreshList()
+        {
+            listBox1.DataSource = null;
+            listBox1.Items.Clear();
+            listBox1.DataSource = ListIP;
+        }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             hwh.CutLooseHardwareNotifications(this.Handle);
             hwh = null;
-            Properties.Settings.Default.cb1 = checkBox1.Checked;
             Properties.Settings.Default.cb2 = checkBox2.Checked;
             Properties.Settings.Default.cbox1 = comboBox1.SelectedIndex;
+            Properties.Settings.Default.radb1 = radioButton1.Checked;
+            Properties.Settings.Default.radb2 = radioButton2.Checked;
+            Properties.Settings.Default.radb3 = radioButton3.Checked;
             Properties.Settings.Default.Save();
         }
-    }
+        }
 }
