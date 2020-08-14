@@ -37,12 +37,6 @@ Lembrando que é apenas uma BETA.
 
 ## Notas da versão v1.4 - BETA: 
 
-* Nova feature: Desconectar a Internet desabilitando o dispositivo
+* Nova feature: Sessão pública solo apenas com amigos a partir de regra de firewall, uma vez que é ativado você vera uma lista para poder adicionar o IP de seus amigos.
 
-* Firewall feature foi movida como funcionalidade em ficar solo na sessão
-
-Ambas são features opcionais e estão em teste. 
-
-OBS: A feature de desabilitar o dispositivo pode ser que não funcione na primeira vez que abre o programa, reinicie o programa, 
-teste com algum dispositivo que não vai prejudicar seu sistema antes de usar em game.
-A opção por firewall aparentemente está funcional para ficar solo na sessão.
+OBS: Não testei totalmente a feature in game, a regra em si funciona perfeitamente, porém não garanto que em jogo funcione ainda, depende da Rockstar não dar fix.
