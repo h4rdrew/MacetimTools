@@ -31,18 +31,13 @@ Lembrando que é apenas uma BETA.
 ## Task Lists
 - [x] Desconectar a internet desativando o dispositivo a ser selecionado.
 - [x] Criar de forma simples e otimizada sessão pública solo a partir do firewall adicionando regas.
+- [ ] Identificador de rede no qual o usuário está conectado no momento e setar como padrão.
 - [ ] GDI opcional para o minigame do cassino que funcione apenas em modo janela.
 - [ ] Cronômetro interativo.
-- [ ] Identificador de rede no qual o usuário está conectado no momento e setar como padrão.
 
-## Notas da versão v1.4 - BETA: 
 
-* Nova feature: Desconectar a Internet desabilitando o dispositivo
+## Notas da versão v1.5a - BETA: 
 
-* Firewall feature foi movida como funcionalidade em ficar solo na sessão
+* Nova feature: Sessão pública solo apenas com amigos a partir de regra de firewall, uma vez que é ativado você vera uma lista para poder adicionar o IP de seus amigos.
 
-Ambas são features opcionais e estão em teste. 
-
-OBS: A feature de desabilitar o dispositivo pode ser que não funcione na primeira vez que abre o programa, reinicie o programa, 
-teste com algum dispositivo que não vai prejudicar seu sistema antes de usar em game.
-A opção por firewall aparentemente está funcional para ficar solo na sessão.
+OBS: Não testei totalmente a feature in game, a regra em si funciona perfeitamente, porém não garanto que em jogo funcione ainda, depende da Rockstar não dar fix.
