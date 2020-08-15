@@ -15,7 +15,7 @@ o MacetimTools é apenas uma ferramenta que tem a seguintes funcionalidades:
 A análise da digital é totalmente propicia a falha, ele apenas compara a imagem atual do mini game e 
 te indica um possível resultado para facilitar.***
 
-![alt text](https://i.imgur.com/Nt9HBuV.png)
+![alt text](https://i.imgur.com/i9tXPjx.png)
 
 NOTAS:
 Antes de utilizar a ferramenta de análise da digital, faça o download das imagens das digitais que são apenas verdadeiras, segue o link:
@@ -36,8 +36,14 @@ Lembrando que é apenas uma BETA.
 - [ ] Cronômetro interativo.
 
 
-## Notas da versão v1.5a - BETA: 
+## Notas da versão v1.5b - BETA: 
+
+* Alguns ajustes de performance.
 
 * Nova feature: Sessão pública solo apenas com amigos a partir de regra de firewall, uma vez que é ativado você vera uma lista para poder adicionar o IP de seus amigos.
+
+* Adicionado um campo para especificar o caminho do "GTA5.exe".
+
+* No campo de "Network Name" agora é possível alterar, antes era default "Ethernet".
 
 OBS: Não testei totalmente a feature in game, a regra em si funciona perfeitamente, porém não garanto que em jogo funcione ainda, depende da Rockstar não dar fix.
