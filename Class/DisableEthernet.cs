@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
 namespace MacetimTools.Class
@@ -46,13 +45,29 @@ namespace MacetimTools.Class
             p.StartInfo = psi;
             p.Start();
         }
-
         public static void DisableAdapter(string interfaceName)
         {
             ProcessStartInfo psi = new ProcessStartInfo("netsh", "interface set interface \"" + interfaceName + "\" disable");
             Process p = new Process();
             p.StartInfo = psi;
             p.Start();
+        }
+        public static string NetworkIdentifier()
+        {
+            NetworkInterface[] networkInfo = NetworkInterface.GetAllNetworkInterfaces();
+
+            string currentNetName = "Not identified";
+
+            for (int i = 0; i < networkInfo.Length; i++)
+            {
+                string nStatus = networkInfo[i].OperationalStatus.ToString();
+
+                if (nStatus == "Up" && networkInfo[i].Name != "Loopback Pseudo-Interface 1")
+                {
+                    currentNetName = networkInfo[i].Name;
+                }
+            }
+            return currentNetName;
         }
     }
     

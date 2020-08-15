@@ -8,15 +8,12 @@ using static MacetimTools.Class.SpecificPrint;
 using static MacetimTools.Class.DisableEthernet;
 using static MacetimTools.Class.FirewallRules;
 using HardwareHelperLib;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Reflection;
 
 namespace MacetimTools
 {
     public partial class Form1 : Form
     {
-        public static string ipV4, exWay, networkName;
+        public static string ipV4, exWay;
         public static int ipIndex = 0;
         HH_Lib hwh = new HH_Lib();
         KeyboardHook hook = new KeyboardHook();
@@ -39,7 +36,7 @@ namespace MacetimTools
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F9); //Desconectar a internet (rede Ethernet por enquanto) e reconectar depois de 3sec
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F10);
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F12);  //Macetim de ficar solo na sessão
-
+            
             GetSettings();
         }
         public void GetSettings()
@@ -47,11 +44,18 @@ namespace MacetimTools
             radioButton1.Checked = Properties.Settings.Default.radb1;
             radioButton2.Checked = Properties.Settings.Default.radb2;
             radioButton3.Checked = Properties.Settings.Default.radb3;
+            checkBox1.Checked = Properties.Settings.Default.cb1;
             checkBox2.Checked = Properties.Settings.Default.cb2;
             textBox3.Text = Properties.Settings.Default.txtbx3;
             textBox1.Text = Properties.Settings.Default.txtbx1;
 
-            if(checkBox2.Checked == true)
+            if (checkBox1.Checked == false)
+            {
+                textBox1.Enabled = false;
+                textBox1.Text = NetworkIdentifier();
+            }
+
+            if (checkBox2.Checked == true)
             {
                 DisableDevice();
                 comboBox1.SelectedIndex = Properties.Settings.Default.cbox1;
@@ -87,20 +91,27 @@ namespace MacetimTools
                 }
                 else
                 {
-                    DisableAdapter(networkName);
+                    DisableAdapter(textBox1.Text);
                     System.Threading.Thread.Sleep(3000);
-                    EnableAdapter(networkName);
+                    EnableAdapter(textBox1.Text);
                 }
             }
             if (e.Modifier == GlobalHotKey.ModifierKeys.Alt && e.Key == Keys.F12)
             {
                 if (radioButton1.Checked == true)
                 {
-                    Process[] remoteByName = Process.GetProcessesByName("GTA5");
-                    int teste = remoteByName[0].Id;
-                    StopProcess.SuspendProcess(teste);
-                    System.Threading.Thread.Sleep(10000);
-                    StopProcess.ResumeProcess(teste);
+                    try
+                    {
+                        Process[] remoteByName = Process.GetProcessesByName("GTA5");
+                        int idProcess = remoteByName[0].Id;
+                        StopProcess.SuspendProcess(idProcess);
+                        System.Threading.Thread.Sleep(10000);
+                        StopProcess.ResumeProcess(idProcess);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("'GTA5.exe' not found. Please check and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 if (radioButton2.Checked == true)
                 {
@@ -162,17 +173,44 @@ namespace MacetimTools
             Notas notas = new Notas();
             notas.Show();
         }
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == false)
+            {
+                textBox1.Enabled = false;
+                textBox1.Text = NetworkIdentifier();
+            }
+
+            if (checkBox1.Checked == true)
+            {
+                textBox1.Enabled = true;
+            }
+
+            if(checkBox2.Checked == false && checkBox1.Checked == false)
+            {
+                textBox1.Enabled = false;
+            }
+        }
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox2.Checked == true)
             {
                 textBox1.Enabled = false;
+                checkBox1.Enabled = false;
                 DisableDevice();
                 comboBox1.Enabled = true;
             }
             else
             {
-                textBox1.Enabled = true;
+                if(checkBox1.Checked == true)
+                {
+                    textBox1.Enabled = true;
+                }
+                else
+                {
+                    textBox1.Enabled = false;
+                }
+                checkBox1.Enabled = true;
                 comboBox1.Enabled = false;
             }
         }
@@ -236,6 +274,7 @@ namespace MacetimTools
         {
             hwh.CutLooseHardwareNotifications(this.Handle);
             hwh = null;
+            Properties.Settings.Default.cb1 = checkBox1.Checked;
             Properties.Settings.Default.cb2 = checkBox2.Checked;
             Properties.Settings.Default.cbox1 = comboBox1.SelectedIndex;
             Properties.Settings.Default.radb1 = radioButton1.Checked;

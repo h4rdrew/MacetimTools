@@ -118,15 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label1.Text" xml:space="preserve">
-    <value>Nota da versão 1.5b - BETA: 
+    <value>Nota da versão 1.5c - BETA: 
 
----&gt; Nova feature: Filtrar a sessão pública apenas com os IPs permitidos
-        -&gt;É criado uma regra no firewall para que apenas o IP dos seus amigos
-consiga acessar.
-
----&gt; Agora você pode setar qual nome de rede você está.
------------------------------------------------------
-Funcionalidade não testada totalmente in game. </value>
+---&gt; O método de desconcetar a internet via Network sempre vai setar como padrão a rede 
+no qual você está conectado no momento, ou pode marcar a caixa de "Custom" 
+e colocar outro nome.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

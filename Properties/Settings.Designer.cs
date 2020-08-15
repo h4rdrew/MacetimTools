@@ -106,5 +106,17 @@ namespace MacetimTools.Properties {
                 this["txtbx1"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool cb1 {
+            get {
+                return ((bool)(this["cb1"]));
+            }
+            set {
+                this["cb1"] = value;
+            }
+        }
     }
 }

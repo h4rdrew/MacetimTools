@@ -55,6 +55,9 @@ namespace MacetimTools
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -97,6 +100,9 @@ namespace MacetimTools
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.checkBox2);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.comboBox1);
@@ -128,7 +134,7 @@ namespace MacetimTools
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Yellow;
-            this.label5.Location = new System.Drawing.Point(7, 28);
+            this.label5.Location = new System.Drawing.Point(6, 37);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 16);
             this.label5.TabIndex = 6;
@@ -146,10 +152,10 @@ namespace MacetimTools
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(10, 47);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(104, 34);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(211, 22);
+            this.textBox1.Size = new System.Drawing.Size(111, 21);
             this.textBox1.TabIndex = 5;
             // 
             // label4
@@ -366,6 +372,39 @@ namespace MacetimTools
             this.textBox3.Size = new System.Drawing.Size(221, 20);
             this.textBox3.TabIndex = 24;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.Black;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(104, 59);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 23;
+            this.checkBox1.UseVisualStyleBackColor = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(120, 59);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(42, 13);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Custom";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(3, 79);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(223, 13);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "------------------------------------------------------------------------";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -384,7 +423,7 @@ namespace MacetimTools
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Macetim v1.5b - BETA";
+            this.Text = "Macetim v1.5c - BETA";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -431,6 +470,9 @@ namespace MacetimTools
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
 
