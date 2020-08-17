@@ -38,12 +38,12 @@ Lembrando que é apenas uma BETA.
 
 ## Notas da versão v1.5d - BETA: 
 
-# Alguns ajustes de performance.
+Alguns ajustes de performance.
 
-# Correções: 
+Correções: 
 
 * Digital não ficava organizada de forma crescente em alguns casos.
 
 * O programa inicializava de forma minimizada.
 
-# Criado um método em que verifica quais redes estão ativas e cria uma lista para o usuário escolher.
+Criado um método em que verifica quais redes estão ativas e cria uma lista para o usuário escolher.
