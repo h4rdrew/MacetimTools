@@ -36,14 +36,9 @@ Lembrando que é apenas uma BETA.
 - [ ] Cronômetro interativo.
 
 
-## Notas da versão v1.5b - BETA: 
+## Notas da versão v1.5c - BETA: 
 
-* Alguns ajustes de performance.
+* Criado um método em que verifica no qual o usuário está conectado no momento e seta como padrão (caso o "disable by device" esteja desativado é claro).
+* E junto foi adicionado a opção "Custom" caso o usário queira setar outro nome.
 
-* Nova feature: Sessão pública solo apenas com amigos a partir de regra de firewall, uma vez que é ativado você vera uma lista para poder adicionar o IP de seus amigos.
-
-* Adicionado um campo para especificar o caminho do "GTA5.exe".
-
-* No campo de "Network Name" agora é possível alterar, antes era default "Ethernet".
-
-OBS: Não testei totalmente a feature in game, a regra em si funciona perfeitamente, porém não garanto que em jogo funcione ainda, depende da Rockstar não dar fix.
+OBS: Até o momento não adicionei tratamento caso ele não encontre nenhuma rede conectada, na verdade ele vai retornar apenas como "Not identified" no TextBox. E também não tem tratamento caso ele encontre mais de 1 com status de "Up". Será prioridade na próxima versão.
