@@ -33,11 +33,15 @@ namespace MacetimTools
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
@@ -55,9 +59,6 @@ namespace MacetimTools
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -70,7 +71,7 @@ namespace MacetimTools
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Yellow;
-            this.label3.Location = new System.Drawing.Point(714, 339);
+            this.label3.Location = new System.Drawing.Point(716, 366);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 13);
             this.label3.TabIndex = 15;
@@ -81,7 +82,7 @@ namespace MacetimTools
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Yellow;
-            this.label2.Location = new System.Drawing.Point(647, 314);
+            this.label2.Location = new System.Drawing.Point(649, 341);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(126, 24);
             this.label2.TabIndex = 14;
@@ -100,28 +101,72 @@ namespace MacetimTools
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.comboBox2);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.checkBox2);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
             this.groupBox2.ForeColor = System.Drawing.Color.Yellow;
             this.groupBox2.Location = new System.Drawing.Point(9, 140);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(227, 174);
+            this.groupBox2.Size = new System.Drawing.Size(227, 198);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Network Disable";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(6, 48);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(210, 21);
+            this.comboBox2.TabIndex = 26;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(3, 109);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(223, 13);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "------------------------------------------------------------------------";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(22, 72);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(42, 13);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Custom";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.Black;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(6, 72);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 23;
+            this.checkBox1.UseVisualStyleBackColor = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(10, 95);
+            this.checkBox2.Location = new System.Drawing.Point(5, 125);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(110, 17);
             this.checkBox2.TabIndex = 8;
@@ -134,7 +179,7 @@ namespace MacetimTools
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Yellow;
-            this.label5.Location = new System.Drawing.Point(6, 37);
+            this.label5.Location = new System.Drawing.Point(7, 29);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 16);
             this.label5.TabIndex = 6;
@@ -145,29 +190,29 @@ namespace MacetimTools
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(10, 118);
+            this.comboBox1.Location = new System.Drawing.Point(6, 143);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(211, 21);
             this.comboBox1.TabIndex = 22;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(104, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(111, 21);
-            this.textBox1.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(6, 151);
+            this.label4.Location = new System.Drawing.Point(6, 174);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(200, 20);
             this.label4.TabIndex = 4;
             this.label4.Text = "Press ALT + F9 in game";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(6, 88);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(210, 21);
+            this.textBox1.TabIndex = 5;
             // 
             // groupBox1
             // 
@@ -246,7 +291,7 @@ namespace MacetimTools
             this.groupBox3.ForeColor = System.Drawing.Color.Yellow;
             this.groupBox3.Location = new System.Drawing.Point(548, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(227, 302);
+            this.groupBox3.Size = new System.Drawing.Size(227, 326);
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Digital Casino Heist";
@@ -256,7 +301,7 @@ namespace MacetimTools
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(10, 28);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(196, 248);
+            this.pictureBox1.Size = new System.Drawing.Size(196, 264);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
@@ -266,7 +311,7 @@ namespace MacetimTools
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(6, 279);
+            this.label7.Location = new System.Drawing.Point(6, 302);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(200, 20);
             this.label7.TabIndex = 4;
@@ -274,7 +319,7 @@ namespace MacetimTools
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(9, 323);
+            this.button4.Location = new System.Drawing.Point(9, 344);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 19;
@@ -288,7 +333,7 @@ namespace MacetimTools
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(6, 106);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(221, 186);
+            this.listBox1.Size = new System.Drawing.Size(221, 212);
             this.listBox1.TabIndex = 20;
             // 
             // textBox2
@@ -339,7 +384,7 @@ namespace MacetimTools
             this.groupBox4.ForeColor = System.Drawing.Color.Yellow;
             this.groupBox4.Location = new System.Drawing.Point(242, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(300, 302);
+            this.groupBox4.Size = new System.Drawing.Size(300, 326);
             this.groupBox4.TabIndex = 24;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "IP Rules";
@@ -372,45 +417,12 @@ namespace MacetimTools
             this.textBox3.Size = new System.Drawing.Size(221, 20);
             this.textBox3.TabIndex = 24;
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.BackColor = System.Drawing.Color.Black;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(104, 59);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 23;
-            this.checkBox1.UseVisualStyleBackColor = false;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(120, 59);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(42, 13);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "Custom";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(3, 79);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(223, 13);
-            this.label10.TabIndex = 25;
-            this.label10.Text = "------------------------------------------------------------------------";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(787, 359);
+            this.ClientSize = new System.Drawing.Size(787, 388);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -423,8 +435,7 @@ namespace MacetimTools
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Macetim v1.5c - BETA";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Text = "Macetim v1.5d - BETA";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox2.ResumeLayout(false);
@@ -473,6 +484,7 @@ namespace MacetimTools
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
 

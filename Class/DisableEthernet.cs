@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
@@ -52,11 +53,13 @@ namespace MacetimTools.Class
             p.StartInfo = psi;
             p.Start();
         }
-        public static string NetworkIdentifier()
+        public static List<string> NetworkIdentifier()
         {
             NetworkInterface[] networkInfo = NetworkInterface.GetAllNetworkInterfaces();
 
-            string currentNetName = "Not identified";
+            //string currentNetName = "Not identified";
+            
+            List<string> currentNetName = new List<string>();
 
             for (int i = 0; i < networkInfo.Length; i++)
             {
@@ -64,7 +67,7 @@ namespace MacetimTools.Class
 
                 if (nStatus == "Up" && networkInfo[i].Name != "Loopback Pseudo-Interface 1")
                 {
-                    currentNetName = networkInfo[i].Name;
+                    currentNetName.Add(networkInfo[i].Name.ToString());
                 }
             }
             return currentNetName;

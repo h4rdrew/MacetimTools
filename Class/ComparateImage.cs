@@ -13,9 +13,7 @@ namespace MacetimTools.Class
 {
     class ComparateImage
     {
-        
-        public static int[] array_public = new int[4];
-        //int[] array_local = new int[4];
+        public static List<int> numbers = new List<int>();
 
         public void image_comparate()
         {
@@ -38,8 +36,6 @@ namespace MacetimTools.Class
             int equalElements = new int();
             string position = "";
             int h = 0;
-            int aux = 0;
-            //string teste;
 
             for (int count = 0; count < 16; count++)
             {
@@ -51,27 +47,20 @@ namespace MacetimTools.Class
                     {
                         position = position + $" {act_position + 1}";
 
-                        array_public[h] = act_position + 1;
-                        //array_local[h] = act_position + 1;
+                        numbers.Add(act_position + 1);
+                        
                         h++;
                     }
                 }
             }
 
-            int caux = 3;
+            List<int> sortedNumbers = numbers.OrderBy(number => number).ToList(); //Organizando os números em ordem crescente.
+            string digNumber = string.Join(",", sortedNumbers.ToArray()); //Adicionando os números a uma string com a vírgula como separador.
 
-            for (int count = 0; count < 4; count++)
-            {
-                if (array_public[0] > array_public[caux])
-                {
-                    aux = array_public[caux];
-                    array_public[caux] = array_public[0];
-                    array_public[0] = aux;
-                }
-                caux--;
-            }
+            // Limpando as listas:
+            numbers.Clear();
+            sortedNumbers.Clear();
 
-            //MessageBox.Show($"pos: {array_public}");
             using (SpeechSynthesizer synth = new SpeechSynthesizer())
             {
 
@@ -80,13 +69,11 @@ namespace MacetimTools.Class
 
                 // Create a PromptBuilder object and append a text string.  
                 PromptBuilder song = new PromptBuilder();
-                song.AppendText($"{array_public[0]} {array_public[1]} {array_public[2]} {array_public[3]}");
+                song.AppendText($"{digNumber}");
 
                 // Speak the contents of the prompt synchronously.  
                 synth.Speak(song);
             }
-
-            //MessageBox.Show($"pos: {position}");
         }
     }
 }
