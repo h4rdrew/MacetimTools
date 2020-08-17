@@ -15,7 +15,7 @@ o MacetimTools é apenas uma ferramenta que tem a seguintes funcionalidades:
 A análise da digital é totalmente propicia a falha, ele apenas compara a imagem atual do mini game e 
 te indica um possível resultado para facilitar.***
 
-![alt text](https://i.imgur.com/i9tXPjx.png)
+![alt text](https://i.imgur.com/jamxTIG.png)
 
 NOTAS:
 Antes de utilizar a ferramenta de análise da digital, faça o download das imagens das digitais que são apenas verdadeiras, segue o link:
@@ -36,9 +36,14 @@ Lembrando que é apenas uma BETA.
 - [ ] Cronômetro interativo.
 
 
-## Notas da versão v1.5c - BETA: 
+## Notas da versão v1.5d - BETA: 
 
-* Criado um método em que verifica no qual o usuário está conectado no momento e seta como padrão (caso o "disable by device" esteja desativado é claro).
-* E junto foi adicionado a opção "Custom" caso o usário queira setar outro nome.
+* Alguns ajustes de performance.
 
-OBS: Até o momento não adicionei tratamento caso ele não encontre nenhuma rede conectada, na verdade ele vai retornar apenas como "Not identified" no TextBox. E também não tem tratamento caso ele encontre mais de 1 com status de "Up". Será prioridade na próxima versão.
+* Correções: 
+
+Digital não ficava organizada de forma crescente em alguns casos.
+
+O programa inicializava de forma minimizada.
+
+* Criado um método em que verifica quais redes estão ativas e cria uma lista para o usuário escolher.
