@@ -31,19 +31,16 @@ Lembrando que é apenas uma BETA.
 ## Task Lists
 - [x] Desconectar a internet desativando o dispositivo a ser selecionado.
 - [x] Criar de forma simples e otimizada sessão pública solo a partir do firewall adicionando regas.
-- [ ] Identificador de rede no qual o usuário está conectado no momento e setar como padrão.
+- [x] Identificar qual rede o usuário está conectado no momento e setar como padrão.
 - [ ] GDI opcional para o minigame do cassino que funcione apenas em modo janela.
 - [ ] Cronômetro interativo.
 
 
-## Notas da versão v1.5d - BETA: 
+## Notas da versão v1.6 - BETA: 
 
-Alguns ajustes de performance.
+Posições de alguns botões foi realocados.
 
-Correções: 
+Adicionado botão 'Search' para adicionar o caminho do 'GTA5.exe'.
 
-* Digital não ficava organizada de forma crescente em alguns casos.
+Agora você pode colocar um nome para indentificar cada IP.
 
-* O programa inicializava de forma minimizada.
-
-Criado um método em que verifica quais redes estão ativas e cria uma lista para o usuário escolher.
