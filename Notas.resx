@@ -118,14 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label1.Text" xml:space="preserve">
-    <value>Nota da versão 1.5d - BETA: 
+    <value>Nota da versão 1.6 - BETA: 
 
----&gt; Digital Casino Heist foi corrigido um bug em que algumas ordens da digital ele não 
-       a organizava de forma crescente.
+--&gt; Posições de alguns botões foi realocados.
 
----&gt; Foi adicionado uma caixa aonde lista as conexões de rede que está ativa no momento.
+--&gt; Adicionado botão 'Search' para adicionar o caminho do 'GTA5.exe'.
 
----&gt; Pequenas correções.</value>
+--&gt; Agora você pode colocar um nome para indentificar cada IP.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

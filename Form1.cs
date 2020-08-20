@@ -8,6 +8,9 @@ using static MacetimTools.Class.SpecificPrint;
 using static MacetimTools.Class.DisableEthernet;
 using static MacetimTools.Class.FirewallRules;
 using HardwareHelperLib;
+using System.Speech.Synthesis.TtsEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MacetimTools
 {
@@ -36,7 +39,7 @@ namespace MacetimTools
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F9); //Desconectar a internet (rede Ethernet por enquanto) e reconectar depois de 3sec
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F10);
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F12);  //Macetim de ficar solo na sessão
-            
+
             GetSettings();
         }
         public void GetSettings()
@@ -48,7 +51,7 @@ namespace MacetimTools
             checkBox2.Checked = Properties.Settings.Default.cb2;
             textBox3.Text = Properties.Settings.Default.txtbx3;
             textBox1.Text = Properties.Settings.Default.txtbx1;
-            
+
 
             if (checkBox1.Checked == false)
             {
@@ -109,7 +112,7 @@ namespace MacetimTools
                 }
                 else
                 {
-                    if(checkBox1.Checked == true)
+                    if (checkBox1.Checked == true)
                     {
                         DisableAdapter(textBox1.Text);
                         System.Threading.Thread.Sleep(3000);
@@ -202,7 +205,7 @@ namespace MacetimTools
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox1.Checked == true)
+            if (checkBox1.Checked == true)
             {
                 textBox1.Enabled = true;
                 comboBox2.Enabled = false;
@@ -213,7 +216,7 @@ namespace MacetimTools
                 textBox1.Enabled = false;
                 comboBox2.Enabled = true;
 
-                if(comboBox2.Items.Count == 0)
+                if (comboBox2.Items.Count == 0)
                 {
                     networkIdenRefreshList();
                 }
@@ -234,7 +237,7 @@ namespace MacetimTools
 
             if (checkBox2.Checked == false)
             {
-                if(checkBox1.Checked == true)
+                if (checkBox1.Checked == true)
                 {
                     textBox1.Enabled = true;
                     comboBox2.Enabled = false;
@@ -260,12 +263,12 @@ namespace MacetimTools
         }
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            if(radioButton3.Checked == true)
+            if (radioButton3.Checked == true)
             {
                 groupBox4.Enabled = true;
                 IpVerf();
                 ipRulesRefreshList();
-                if(FirewallCheckStatus("GTASoloFriends") == true)
+                if (FirewallCheckStatus("GTASoloFriends") == true)
                 {
                     pictureBox2.Visible = true;
                     pictureBox2.Image = MacetimTools.Properties.Resources.check;
@@ -285,27 +288,50 @@ namespace MacetimTools
         private void button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
-                
+
                 return;
 
             exWay = textBox3.Text;
             ipV4 = textBox2.Text;
+
+            IPList(ipV4, textBox4.Text);
+
             CheckRules("GTASoloFriends");
             IpVerf();
             textBox2.Clear();
+            textBox4.Clear();
             textBox2.Focus();
             ipRulesRefreshList();
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            IpRemove(listBox1.SelectedIndex);
-            ipRulesRefreshList();
+            try
+            {
+                IpRemove(listBox1.SelectedIndex);
+                IpRemoveTXT(listBox1.SelectedIndex);
+                ipRulesRefreshList();
+            }
+            catch
+            {
+                ipRulesRefreshList();
+            }
         }
         public void ipRulesRefreshList()
         {
+            string path = @"C:\Program Files\Macetim\IPList.txt";
             listBox1.DataSource = null;
             listBox1.Items.Clear();
-            listBox1.DataSource = ListIP;
+
+            try
+            {
+                List<string> IpsName = File.ReadAllLines(path).ToList();
+                listBox1.DataSource = IpsName;
+            }
+            catch
+            {
+                File.CreateText(path);
+            }
+
         }
         public void networkIdenRefreshList()
         {
@@ -313,6 +339,42 @@ namespace MacetimTools
             comboBox2.Items.Clear();
             comboBox2.DataSource = NetworkIdentifier();
         }
+        public void IPList(string ipv4TB, string nameTB)
+        {
+            string path = @"C:\Program Files\Macetim\IPList.txt";
+
+            File.AppendAllText(path, $"{ipv4TB} - {nameTB}" + Environment.NewLine);
+        }
+        public void IpRemoveTXT(int position)
+        {
+            string path = @"C:\Program Files\Macetim\IPList.txt";
+            string aux;
+            List<string> IpsName = File.ReadAllLines(path).ToList();
+            IpsName.RemoveAt(position);
+
+            if (File.Exists(path))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    for (int i = 0; i < IpsName.Count; i++)
+                    {
+                        aux = IpsName[i];
+                        sw.WriteLine($"{aux}");
+                    }
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                textBox3.Text = folderBrowserDialog1.SelectedPath + @"\GTA5.exe";
+            }
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             hwh.CutLooseHardwareNotifications(this.Handle);
@@ -330,3 +392,4 @@ namespace MacetimTools
         }
     }
 }
+
