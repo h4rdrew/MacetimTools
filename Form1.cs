@@ -27,6 +27,7 @@ namespace MacetimTools
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Verificacao se a pasta "Macetim" existe ou nao, se nao, ele cria.
             if (Directory.Exists("C:\\Program Files\\Macetim") == false)
             {
                 Directory.CreateDirectory("C:\\Program Files\\Macetim\\True");
@@ -34,13 +35,11 @@ namespace MacetimTools
 
             // register the event that is fired after the key press.
             hook.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook_KeyPressed);
+            hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F1);  //--- ALT+F1: Digital Casino Heist Hotkey
+            hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F9);  //--- ALT+F9: Network Disable Hotkey
+            hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F12); //--- ALT+F12: Solo Public Game Hotkey
 
-            hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F1); //Macetim da Digital
-            hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F9); //Desconectar a internet (rede Ethernet por enquanto) e reconectar depois de 3sec
-            hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F10);
-            hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F12);  //Macetim de ficar solo na sessão
-
-            GetSettings();
+            GetSettings(); //Carrega os dados que foram salvos em Form1_FormClosing()
         }
         public void GetSettings()
         {
@@ -84,18 +83,20 @@ namespace MacetimTools
         }
         void hook_KeyPressed(object sender, KeyPressedEventArgs e)
         {
-            // show the keys pressed in a label.
-            //label1.Text = e.Modifier.ToString() + " + " + e.Key.ToString();
+            //--- ALT+F1: Digital Casino Heist Hotkey
             if (e.Modifier == GlobalHotKey.ModifierKeys.Alt && e.Key == Keys.F1)
             {
                 Directory.CreateDirectory("C:\\Program Files\\Macetim\\Temp");
                 printpoint();
                 comparate.image_comparate();
             }
+            //--- ALT+F9: Network Disable Hotkey
             if (e.Modifier == GlobalHotKey.ModifierKeys.Alt && e.Key == Keys.F9)
             {
                 string[] devices = new string[1];
-                if (checkBox2.Checked == true)
+
+                //------Disable by Device-----
+                if (checkBox2.Checked == true) 
                 {
                     //Disable
                     hwh.CutLooseHardwareNotifications(this.Handle);
@@ -103,13 +104,15 @@ namespace MacetimTools
                     hwh.SetDeviceState(devices, false);
                     hwh.HookHardwareNotifications(this.Handle, true);
                     //-----------------------------------------------
-                    System.Threading.Thread.Sleep(3000);
+                    System.Threading.Thread.Sleep(6000);
                     //Enable
                     hwh.CutLooseHardwareNotifications(this.Handle);
                     devices[0] = comboBox1.SelectedItem.ToString();
                     hwh.SetDeviceState(devices, true);
                     hwh.HookHardwareNotifications(this.Handle, true);
                 }
+
+                //------Disable by Network Name-------
                 else
                 {
                     if (checkBox1.Checked == true)
@@ -126,8 +129,10 @@ namespace MacetimTools
                     }
                 }
             }
+            //--- ALT+F12: Solo Public Game Hotkey
             if (e.Modifier == GlobalHotKey.ModifierKeys.Alt && e.Key == Keys.F12)
             {
+                //--- Stop Process
                 if (radioButton1.Checked == true)
                 {
                     try
@@ -143,6 +148,7 @@ namespace MacetimTools
                         MessageBox.Show("'GTA5.exe' not found. Please check and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                //--- Firewall
                 if (radioButton2.Checked == true)
                 {
                     CheckRules("Block Internet");
@@ -153,6 +159,7 @@ namespace MacetimTools
                         FirewallSet(false, "Block Internet");
                     }
                 }
+                //--- Firewall w/Friends
                 if (radioButton3.Checked == true)
                 {
                     if (FirewallCheckStatus("GTASoloFriends") == true)
@@ -186,7 +193,6 @@ namespace MacetimTools
                     {
                         if (m.WParam.ToInt32() == HardwareHelperLib.Native.DBT_DEVNODES_CHANGED)
                         {
-                            //comboBox1.Items.Clear();
                             string[] HardwareList = hwh.GetAll();
                             foreach (string s in HardwareList)
                             {
@@ -287,6 +293,26 @@ namespace MacetimTools
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            /* 
+            Checando se o textbox2 ou textbox3 nao estao vazios ou nulos
+            caso algum nao esteja no parametro requisitado, o processo retorna.
+
+            Com devidos dados inseridos em textBox2 e textBox3, outras duas variaveis publicas
+            estarao recebendos os valores.
+
+            IPList() eh acionado para que possa armazenar os dados no arquivo IPList.txt
+
+            CheckRules() eh acionado para verificar se existe tal regra, se nao, ele cria
+            a regra com o nome pre-difinido e insere o IP enviado pelo usuario.
+
+            IpVerf() eh acionado para organizar os IP existentes na regra do firewall e adicionar
+            a uma lista publica ListIP.
+
+            Sera limpo os textBox e em seguida foco no textBox2
+
+            ipRulesRefreshList() eh acionado para atualizar a listBox1 com o novo IP.
+            */
+
             if (string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
 
                 return;
@@ -318,6 +344,8 @@ namespace MacetimTools
         }
         public void ipRulesRefreshList()
         {
+            // ---ipRulesRefreshList() eh responsavel por pegar os dados do IPList.txt e transferir para a listBox1 para ser visivel
+
             string path = @"C:\Program Files\Macetim\IPList.txt";
             listBox1.DataSource = null;
             listBox1.Items.Clear();
@@ -335,21 +363,28 @@ namespace MacetimTools
         }
         public void networkIdenRefreshList()
         {
+            // ---networkIdenRefreshList() eh responsavel em atualizar a lista de redes disponiveis.
+
             comboBox2.DataSource = null;
             comboBox2.Items.Clear();
             comboBox2.DataSource = NetworkIdentifier();
         }
         public void IPList(string ipv4TB, string nameTB)
         {
+            // ---IPList() eh responsavel em adicionar novas linhas ao arquivo IPList.txt de acordo com os dados inseridos
+
             string path = @"C:\Program Files\Macetim\IPList.txt";
 
             File.AppendAllText(path, $"{ipv4TB} - {nameTB}" + Environment.NewLine);
         }
         public void IpRemoveTXT(int position)
         {
+            //--- IpRemoveTXT() eh responsável por remove uma linha do arquivo IPList.txt
+
             string path = @"C:\Program Files\Macetim\IPList.txt";
             string aux;
             List<string> IpsName = File.ReadAllLines(path).ToList();
+
             IpsName.RemoveAt(position);
 
             if (File.Exists(path))
@@ -365,16 +400,20 @@ namespace MacetimTools
                 }
             }
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
+            /* 
+            O usuario seleciona o caminho no qual se encontra o GTA5.exe
+            porem eh adicionado uma string a mais para poder deixar o path
+            correto ex: C:/aaaaa/bbbbb/cccc/GTA5.exe 
+            */
+
             DialogResult result = folderBrowserDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
                 textBox3.Text = folderBrowserDialog1.SelectedPath + @"\GTA5.exe";
             }
         }
-
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             hwh.CutLooseHardwareNotifications(this.Handle);
