@@ -28,6 +28,7 @@ namespace MacetimTools
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,8 +53,8 @@ namespace MacetimTools
             this.button4 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -61,13 +62,33 @@ namespace MacetimTools
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.secondNumeric = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.minuteNumeric = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
+            this.hourNumeric = new System.Windows.Forms.NumericUpDown();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.secondNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minuteNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hourNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -75,7 +96,7 @@ namespace MacetimTools
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Yellow;
-            this.label2.Location = new System.Drawing.Point(649, 341);
+            this.label2.Location = new System.Drawing.Point(649, 574);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(126, 24);
             this.label2.TabIndex = 14;
@@ -312,7 +333,7 @@ namespace MacetimTools
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(9, 344);
+            this.button4.Location = new System.Drawing.Point(8, 572);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 19;
@@ -337,29 +358,27 @@ namespace MacetimTools
             this.textBox2.Size = new System.Drawing.Size(101, 20);
             this.textBox2.TabIndex = 21;
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(235, 84);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 20);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Adicionar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.ImageIndex = 2;
+            this.button2.ImageList = this.imageList1;
             this.button2.Location = new System.Drawing.Point(235, 119);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(59, 20);
+            this.button2.Size = new System.Drawing.Size(25, 25);
             this.button2.TabIndex = 23;
-            this.button2.Text = "Remover";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "more.png");
+            this.imageList1.Images.SetKeyName(1, "search.png");
+            this.imageList1.Images.SetKeyName(2, "trash.png");
+            this.imageList1.Images.SetKeyName(3, "play.png");
             // 
             // groupBox4
             // 
@@ -387,14 +406,16 @@ namespace MacetimTools
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.Transparent;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(235, 45);
+            this.button3.ImageIndex = 1;
+            this.button3.ImageList = this.imageList1;
+            this.button3.Location = new System.Drawing.Point(235, 42);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(59, 20);
+            this.button3.Size = new System.Drawing.Size(25, 25);
             this.button3.TabIndex = 29;
-            this.button3.Text = "Search";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label11
@@ -443,12 +464,200 @@ namespace MacetimTools
             this.textBox3.Size = new System.Drawing.Size(221, 20);
             this.textBox3.TabIndex = 24;
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.ImageIndex = 0;
+            this.button1.ImageList = this.imageList1;
+            this.button1.Location = new System.Drawing.Point(235, 81);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 25);
+            this.button1.TabIndex = 22;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.secondNumeric);
+            this.groupBox5.Controls.Add(this.label16);
+            this.groupBox5.Controls.Add(this.minuteNumeric);
+            this.groupBox5.Controls.Add(this.label15);
+            this.groupBox5.Controls.Add(this.hourNumeric);
+            this.groupBox5.Controls.Add(this.button6);
+            this.groupBox5.Controls.Add(this.label14);
+            this.groupBox5.Controls.Add(this.label13);
+            this.groupBox5.Controls.Add(this.label12);
+            this.groupBox5.Controls.Add(this.label3);
+            this.groupBox5.Controls.Add(this.textBox6);
+            this.groupBox5.Controls.Add(this.textBox5);
+            this.groupBox5.Controls.Add(this.button5);
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.ForeColor = System.Drawing.Color.Yellow;
+            this.groupBox5.Location = new System.Drawing.Point(9, 344);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(766, 203);
+            this.groupBox5.TabIndex = 25;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Timer";
+            // 
+            // secondNumeric
+            // 
+            this.secondNumeric.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.secondNumeric.Location = new System.Drawing.Point(89, 52);
+            this.secondNumeric.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.secondNumeric.Name = "secondNumeric";
+            this.secondNumeric.Size = new System.Drawing.Size(35, 24);
+            this.secondNumeric.TabIndex = 36;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Yellow;
+            this.label16.Location = new System.Drawing.Point(98, 33);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(17, 16);
+            this.label16.TabIndex = 35;
+            this.label16.Text = "S";
+            // 
+            // minuteNumeric
+            // 
+            this.minuteNumeric.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minuteNumeric.Location = new System.Drawing.Point(48, 52);
+            this.minuteNumeric.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.minuteNumeric.Name = "minuteNumeric";
+            this.minuteNumeric.Size = new System.Drawing.Size(35, 24);
+            this.minuteNumeric.TabIndex = 34;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Yellow;
+            this.label15.Location = new System.Drawing.Point(56, 33);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(19, 16);
+            this.label15.TabIndex = 33;
+            this.label15.Text = "M";
+            // 
+            // hourNumeric
+            // 
+            this.hourNumeric.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hourNumeric.Location = new System.Drawing.Point(7, 52);
+            this.hourNumeric.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.hourNumeric.Name = "hourNumeric";
+            this.hourNumeric.Size = new System.Drawing.Size(35, 24);
+            this.hourNumeric.TabIndex = 32;
+            // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.ForeColor = System.Drawing.Color.Black;
+            this.button6.ImageIndex = 3;
+            this.button6.ImageList = this.imageList1;
+            this.button6.Location = new System.Drawing.Point(259, 130);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(25, 25);
+            this.button6.TabIndex = 31;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(229, 158);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(88, 24);
+            this.label14.TabIndex = 30;
+            this.label14.Text = "00:00:00";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Yellow;
+            this.label13.Location = new System.Drawing.Point(16, 33);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(18, 16);
+            this.label13.TabIndex = 29;
+            this.label13.Text = "H";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Yellow;
+            this.label12.Location = new System.Drawing.Point(161, 145);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(34, 16);
+            this.label12.TabIndex = 27;
+            this.label12.Text = "Text";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Yellow;
+            this.label3.Location = new System.Drawing.Point(161, 88);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 16);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Title";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Location = new System.Drawing.Point(6, 114);
+            this.textBox6.Multiline = true;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(149, 82);
+            this.textBox6.TabIndex = 25;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Location = new System.Drawing.Point(7, 82);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(148, 26);
+            this.textBox5.TabIndex = 24;
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.Black;
+            this.button5.ImageIndex = 0;
+            this.button5.ImageList = this.imageList1;
+            this.button5.Location = new System.Drawing.Point(130, 51);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(25, 25);
+            this.button5.TabIndex = 23;
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(787, 371);
+            this.ClientSize = new System.Drawing.Size(787, 607);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox2);
@@ -473,6 +682,11 @@ namespace MacetimTools
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.secondNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minuteNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hourNumeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -512,6 +726,22 @@ namespace MacetimTools
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.NumericUpDown secondNumeric;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.NumericUpDown minuteNumeric;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.NumericUpDown hourNumeric;
     }
 }
 

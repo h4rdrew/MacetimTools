@@ -11,6 +11,7 @@ using HardwareHelperLib;
 using System.Speech.Synthesis.TtsEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System.Speech.Synthesis;
 
 namespace MacetimTools
 {
@@ -18,6 +19,7 @@ namespace MacetimTools
     {
         public static string ipV4, exWay;
         public static int ipIndex = 0;
+        int tempo = 0, hora = 0, minuto = 0, segundo = 0;
         HH_Lib hwh = new HH_Lib();
         KeyboardHook hook = new KeyboardHook();
         ComparateImage comparate = new ComparateImage();
@@ -38,6 +40,9 @@ namespace MacetimTools
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F1);  //--- ALT+F1: Digital Casino Heist Hotkey
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F9);  //--- ALT+F9: Network Disable Hotkey
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F12); //--- ALT+F12: Solo Public Game Hotkey
+
+            //dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            //dateTimePicker1.CustomFormat = "00:00:00"; //HH:mm:ss
 
             GetSettings(); //Carrega os dados que foram salvos em Form1_FormClosing()
         }
@@ -89,6 +94,7 @@ namespace MacetimTools
                 Directory.CreateDirectory("C:\\Program Files\\Macetim\\Temp");
                 printpoint();
                 comparate.image_comparate();
+                VIMH(comparate.image_comparate());
             }
             //--- ALT+F9: Network Disable Hotkey
             if (e.Modifier == GlobalHotKey.ModifierKeys.Alt && e.Key == Keys.F9)
@@ -400,6 +406,137 @@ namespace MacetimTools
                 }
             }
         }
+        public void VIMH(string text)
+        {
+            using (SpeechSynthesizer synth = new SpeechSynthesizer())
+            {
+
+                // Configure the audio output.   
+                synth.SetOutputToDefaultAudioDevice();
+
+                // Create a PromptBuilder object and append a text string.  
+                PromptBuilder song = new PromptBuilder();
+                song.AppendText($"{text}");
+
+                // Speak the contents of the prompt synchronously.  
+                synth.Speak(song);
+            }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            segundo--;
+
+            if (segundo <= 0 && minuto > 0)
+            {
+                segundo = 59;
+                minuto--;
+            }
+
+            if(segundo <=0 && minuto <= 0 && hora > 0)
+            {
+                hora--;
+                minuto = 59;
+                segundo = 59;
+            }
+
+            #region If Pra Caralho(Apenas teste)
+            if (hora < 10)
+            {
+                if (minuto < 10)
+                {
+                    if (segundo < 10)
+                    {
+                        label14.Text = "0" + hora + ":" + "0" + minuto + ":" + "0" + segundo;
+                    }
+                    if (segundo > 9)
+                    {
+                        label14.Text = "0" + hora + ":" + "0" + minuto + ":" + segundo;
+                    }
+                }
+                if (minuto > 9)
+                {
+                    if (segundo < 10)
+                    {
+                        label14.Text = "0" + hora + ":" + minuto + ":" + "0" + segundo;
+                    }
+                    if (segundo > 9)
+                    {
+                        label14.Text = "0" + hora + ":" + minuto + ":" + segundo;
+                    }
+                }
+            }
+
+            if (hora > 9)
+            {
+                if (minuto < 10)
+                {
+                    if (segundo < 10)
+                    {
+                        label14.Text = hora + ":" + "0" + minuto + ":" + "0" + segundo;
+                    }
+                    if (segundo > 9)
+                    {
+                        label14.Text = hora + ":" + "0" + minuto + ":" + segundo;
+                    }
+                }
+                if (minuto > 9)
+                {
+                    if (segundo < 10)
+                    {
+                        label14.Text = hora + ":" + minuto + ":" + "0" + segundo;
+                    }
+                    if (segundo > 9)
+                    {
+                        label14.Text = hora + ":" + minuto + ":" + segundo;
+                    }
+                }
+            }
+
+            //if (minuto < 10)
+            //{
+            //    if (segundo < 10)
+            //    {
+            //        label14.Text = "0" + hora + ":" + "0" + minuto + ":" + "0" + segundo;
+            //    }
+            //    if (segundo > 9)
+            //    {
+            //        label14.Text = "0" + hora + ":" + "0" + minuto + ":" + segundo;
+            //    }
+            //}
+
+            //if (minuto > 9)
+            //{
+            //    if (segundo < 10)
+            //    {
+            //        label14.Text = "0" + hora + ":" + minuto + ":" + "0" + segundo;
+            //    }
+            //    if (segundo > 9)
+            //    {
+            //        label14.Text = "0" + hora + ":" + minuto + ":" + segundo;
+            //    }
+            //}
+
+            //if (segundo < 10)
+            //{
+            //    label14.Text = "0" + hora + ":" + "0" + minuto + ":" + "0" + segundo;
+            //}
+
+            //if (segundo > 9)
+            //{
+            //    label14.Text = "0" + hora + ":" + "0" + minuto + ":" + segundo;
+            //}
+            #endregion
+
+
+            if (hora == 0 && minuto == 0 && segundo == 0)
+            {
+                timer1.Enabled = false;
+                label14.Text = "00:00:00";
+                VIMH(textBox6.Text);
+            }
+
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             /* 
@@ -413,6 +550,14 @@ namespace MacetimTools
             {
                 textBox3.Text = folderBrowserDialog1.SelectedPath + @"\GTA5.exe";
             }
+        }
+        private void button6_Click(object sender, EventArgs e)
+        {
+            hora = Convert.ToInt16(hourNumeric.Value);
+            minuto = Convert.ToInt16(minuteNumeric.Value);
+            segundo = Convert.ToInt16(secondNumeric.Value);
+
+            timer1.Enabled = true;
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

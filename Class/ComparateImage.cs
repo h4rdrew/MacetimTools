@@ -8,6 +8,7 @@ using System.Speech.Synthesis;
 using System.Drawing;
 using static MacetimTools.Class.ImageBright;
 using System.Windows.Forms;
+using static MacetimTools.Form1;
 
 namespace MacetimTools.Class
 {
@@ -15,7 +16,7 @@ namespace MacetimTools.Class
     {
         public static List<int> numbers = new List<int>();
 
-        public void image_comparate()
+        public string image_comparate()
         {
 
             string[] filesTemp = Directory.GetFiles(@"C:\Program Files\Macetim\Temp");
@@ -61,19 +62,7 @@ namespace MacetimTools.Class
             numbers.Clear();
             sortedNumbers.Clear();
 
-            using (SpeechSynthesizer synth = new SpeechSynthesizer())
-            {
-
-                // Configure the audio output.   
-                synth.SetOutputToDefaultAudioDevice();
-
-                // Create a PromptBuilder object and append a text string.  
-                PromptBuilder song = new PromptBuilder();
-                song.AppendText($"{digNumber}");
-
-                // Speak the contents of the prompt synchronously.  
-                synth.Speak(song);
-            }
+            return digNumber;
         }
     }
 }
