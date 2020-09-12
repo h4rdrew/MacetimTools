@@ -38,5 +38,5 @@ Lembrando que é apenas uma BETA.
 
 ## Notas da versão v1.6a - BETA: 
 
-Corrigido o problema aonde o Firewall w/Friends não funcionava com 2 ou mais amigos.
+Corrigido o problema onde o Firewall w/Friends não funcionava com 2 ou mais amigos.
 
