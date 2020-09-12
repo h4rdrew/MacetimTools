@@ -36,11 +36,7 @@ Lembrando que é apenas uma BETA.
 - [ ] Cronômetro interativo.
 
 
-## Notas da versão v1.6 - BETA: 
+## Notas da versão v1.6a - BETA: 
 
-Posições de alguns botões foram realocados.
-
-Adicionado botão 'Search' para adicionar o caminho do 'GTA5.exe'.
-
-Agora você pode colocar um nome para indentificar cada IP.
+Corrigido o problema aonde o Firewall w/Friends não funcionava com 2 ou mais amigos.
 
