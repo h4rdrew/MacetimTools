@@ -326,9 +326,11 @@ namespace MacetimTools
             exWay = textBox3.Text;
             ipV4 = textBox2.Text;
 
-            IPList(ipV4, textBox4.Text);
+            //IPList(ipV4, textBox4.Text);
 
             CheckRules("GTASoloFriends");
+
+            IPList(textBox2.Text, textBox4.Text);
             IpVerf();
             textBox2.Clear();
             textBox4.Clear();
@@ -379,9 +381,35 @@ namespace MacetimTools
         {
             // ---IPList() eh responsavel em adicionar novas linhas ao arquivo IPList.txt de acordo com os dados inseridos
 
-            string path = @"C:\Program Files\Macetim\IPList.txt";
+            List<string> myList = new List<string>();
 
-            File.AppendAllText(path, $"{ipv4TB} - {nameTB}" + Environment.NewLine);
+            string path = @"C:\Program Files\Macetim\IPList.txt";
+            string[] text = File.ReadAllLines(path);
+
+            if (text.Length != 0)
+            {
+                File.AppendAllText(path, $"{ipv4TB}={nameTB}" + Environment.NewLine);
+                string[] text2 = File.ReadAllLines(path);
+
+                for (int i = 0; i < text2.Length; i++)
+                {
+                    myList.Add(text2[i]);
+                }
+
+                List<string> sortedIP = myList.OrderBy(number => number).ToList(); //Organizando os IP em ordem crescente.
+
+                File.Delete(path);
+                File.CreateText(path).Dispose();
+
+                for (int i = 0; i < sortedIP.Count; i++)
+                {
+                    File.AppendAllText(path, $"{sortedIP[i]}" + Environment.NewLine);
+                }
+            }
+            else
+            {
+                File.AppendAllText(path, $"{ipv4TB}={nameTB}" + Environment.NewLine);
+            }
         }
         public void IpRemoveTXT(int position)
         {
@@ -390,7 +418,7 @@ namespace MacetimTools
             string path = @"C:\Program Files\Macetim\IPList.txt";
             string aux;
             List<string> IpsName = File.ReadAllLines(path).ToList();
-
+            IpVerf();
             IpsName.RemoveAt(position);
 
             if (File.Exists(path))

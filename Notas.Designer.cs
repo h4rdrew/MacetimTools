@@ -37,15 +37,16 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(341, 91);
+            this.label1.Size = new System.Drawing.Size(301, 52);
             this.label1.TabIndex = 1;
-            this.label1.Text = resources.GetString("label1.Text");
+            this.label1.Text = "Nota da versão 1.6 - BETA: \r\n\r\n--> Corrigido o problema do Firewall w/Friends não" +
+    " funcionava \r\ncom 2 ou mais amigos";
             // 
             // Notas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(362, 116);
+            this.ClientSize = new System.Drawing.Size(321, 76);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

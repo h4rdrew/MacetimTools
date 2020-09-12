@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using NetFwTypeLib;
 using static MacetimTools.Form1;
 
@@ -83,6 +85,10 @@ namespace MacetimTools.Class
             var currentProfiles = fwPolicy2.CurrentProfileTypes;
 
             List<INetFwRule> RuleList = new List<INetFwRule>();
+
+            IpVerf();
+            ListIP.Add(ipV4);
+
             foreach (INetFwRule rule in fwPolicy2.Rules)
             {
                 if (rule.Name.IndexOf(RuleName) != -1)
@@ -100,7 +106,23 @@ namespace MacetimTools.Class
                         }
                         else
                         {
-                            rule.RemoteAddresses = $"{aux}" + $",0.0.0.0-{ipNeg},{ipPos}-255.255.255.255";
+                            List<string> myList = new List<string>();
+
+                            List<string> sortedNumbers = ListIP.OrderBy(number => number).ToList(); //Organizando os IP em ordem crescente.
+
+                            for (int i = 0; i < sortedNumbers.Count; i++)
+                            {
+                                ipV4 = sortedNumbers[i];
+                                IpA();
+                                myList.Add("-");
+                                myList.Add(ipNeg);
+                                myList.Add(",");
+                                myList.Add(ipPos);
+                            }
+
+                            string aux2 = string.Join("", myList);
+
+                            rule.RemoteAddresses = $"0.0.0.0{aux2}-255.255.255.255";
                         }
                     }
                 }
@@ -152,43 +174,50 @@ namespace MacetimTools.Class
         }
         public static void IpA()
         {
-            INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
-            var rule = firewallPolicy.Rules.Item("GTASoloFriends");
-            string[] blocks = new string[4];
-
-            blocks = ipV4.Split('.');
-            int[] myints = Array.ConvertAll(blocks, s => int.Parse(s));
-            myints[3]--;
-            string fullIP = "";
-
-            for (int i = 0; i < 4; i++)
+            try
             {
-                blocks[i] = myints[i].ToString() + ".";
-                fullIP = fullIP + blocks[i];
-                if (i == 3)
+                INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
+                var rule = firewallPolicy.Rules.Item("GTASoloFriends");
+                string[] blocks = new string[4];
+
+                blocks = ipV4.Split('.');
+                int[] myints = Array.ConvertAll(blocks, s => int.Parse(s));
+                myints[3]--;
+                string fullIP = "";
+
+                for (int i = 0; i < 4; i++)
                 {
-                    fullIP = fullIP.Remove(fullIP.Length - 1);
+                    blocks[i] = myints[i].ToString() + ".";
+                    fullIP = fullIP + blocks[i];
+                    if (i == 3)
+                    {
+                        fullIP = fullIP.Remove(fullIP.Length - 1);
+                    }
                 }
-            }
-            ipNeg = fullIP;
+                ipNeg = fullIP;
 
-            blocks = ipV4.Split('.');
-            myints = Array.ConvertAll(blocks, s => int.Parse(s));
-            myints[3]++;
-            fullIP = "";
+                blocks = ipV4.Split('.');
+                myints = Array.ConvertAll(blocks, s => int.Parse(s));
+                myints[3]++;
+                fullIP = "";
 
-            for (int i = 0; i < 4; i++)
-            {
-                blocks[i] = myints[i].ToString() + ".";
-                fullIP = fullIP + blocks[i];
-                if (i == 3)
+                for (int i = 0; i < 4; i++)
                 {
-                    fullIP = fullIP.Remove(fullIP.Length - 1);
+                    blocks[i] = myints[i].ToString() + ".";
+                    fullIP = fullIP + blocks[i];
+                    if (i == 3)
+                    {
+                        fullIP = fullIP.Remove(fullIP.Length - 1);
+                    }
                 }
+
+                ipPos = fullIP;
             }
 
-            ipPos = fullIP;
-
+            catch
+            { 
+                //----Sem resolução
+            }
         }
         public static void IpVerf()
         {
@@ -198,6 +227,7 @@ namespace MacetimTools.Class
                 var rule = firewallPolicy.Rules.Item("GTASoloFriends");
 
                 string aux = rule.RemoteAddresses;
+
                 string[] blocks;
                 List<string> myList = new List<string>();
                 blocks = aux.Split('-', ',');
@@ -214,14 +244,15 @@ namespace MacetimTools.Class
                 while (myList.Count != p)
                 {
                     myList.RemoveAt(v);
-                    x++;
-                    if (x == 3)
-                    {
-                        v++;
-                        x = 0;
-                    }
+                    //x++;
+                    v = v + 1;
+                    //if (x == 3)
+                    //{
+                    //    v++;
+                    //    x = 0;
+                    //}
                 }
-
+                //-------------------------------
                 string[] Jooj = new string[4];
                 int[] myints;
                 string[] ListU = new string[myList.Count];
@@ -266,20 +297,42 @@ namespace MacetimTools.Class
                     string aux = rule.RemoteAddresses;
                     string[] blocks;
                     List<string> myList = new List<string>();
-                    blocks = aux.Split(',');
+                    blocks = aux.Split(',','-');
 
                     for (int i = 0; i < blocks.Length; i++)
                     {
                         myList.Add(blocks[i]);
                     }
 
-                    for (int i = 0; i < 2; i++)
+                    int position = ipRemove + (ipRemove + 1);
+
+                    myList.RemoveAt(position);
+                    myList.RemoveAt(position);
+
+                    List<string> auxList = new List<string>();
+
+                    for (int i = 0; i < myList.Count; i = i + 2)
                     {
-                        myList.RemoveAt(ipRemove * 2);
+                        auxList.Add(myList[i]);
+                        auxList.Add("-");
+                        auxList.Add(myList[i+1]);
+                        auxList.Add(",");
+
+                        //i = i + 2;
                     }
 
-                    aux = string.Join(",", myList.ToArray());
-                    rule.RemoteAddresses = aux;
+                    auxList.RemoveAt(auxList.Count - 1);
+
+                    aux = string.Join("", auxList);
+
+                    if (auxList.Count == 3)
+                    {
+                        rule.RemoteAddresses = "";
+                    }
+                    if(auxList.Count != 3)
+                    {
+                        rule.RemoteAddresses = aux;
+                    }
                 }
             }
             IpVerf();
