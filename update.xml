@@ -2,7 +2,7 @@
 <sharpUpdate>
 	<update appId="MacetimTools">
 		<version>1.6.2.0</version>
-		<url>https://github.com/h4rdrew/MacetimTools/blob/master/MacetimTools.exe</url>
+		<url>https://github.com/h4rdrew/MacetimTools/raw/master/MacetimTools.exe</url>
 		<fileName>MacetimTools.exe</fileName>
 		<md5>bb06e41386c48e225d2c1d96cb6f7a1a</md5>
 		<description>Initial update</description>
