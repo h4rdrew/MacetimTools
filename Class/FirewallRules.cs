@@ -16,6 +16,7 @@ namespace MacetimTools.Class
         public static string ipNeg = " ", ipPos = " ";
         public static bool indicador = false;
         public static List<string> ListIP = new List<string>();
+        
         public static void FirewallAddRule(string RuleName)
         {
             int option = 0;
@@ -107,7 +108,7 @@ namespace MacetimTools.Class
                         else
                         {
                             List<string> myList = new List<string>();
-
+                            //ListIP.Sort();
                             List<string> sortedNumbers = ListIP.OrderBy(number => number).ToList(); //Organizando os IP em ordem crescente.
 
                             for (int i = 0; i < sortedNumbers.Count; i++)
@@ -236,32 +237,34 @@ namespace MacetimTools.Class
                     myList.Add(blocks[i]);
                 }
 
-                //--------------------  Organizando a lista abaixo com apenas IP's inseridas
-                myList.RemoveAt(0);
+                /* 
+                Organizando a lista abaixo com apenas IP's inseridas
+                Removendo o primeiro e ultimo da lista que corresponde respectivamente: 0.0.0.0 e 255.255.255.255
+                */
 
-                int v = 1, x = 0, p = ((myList.Count + 1) / 4);
+                myList.RemoveAt(0);
+                myList.RemoveAt(myList.Count - 1);
+
+                /*
+                Depois de remover, vou apenas deixar os IPs "brutos" (negativos)
+                para que depois seja somado (+1) no final de cada IP onde assim
+                de continuidade.
+                */
+                int v = 1, p = (myList.Count / 2);
 
                 while (myList.Count != p)
                 {
                     myList.RemoveAt(v);
-                    //x++;
                     v = v + 1;
-                    //if (x == 3)
-                    //{
-                    //    v++;
-                    //    x = 0;
-                    //}
                 }
                 //-------------------------------
+                //Abaixo estamos fazendo a adição (+1) para o(s) IP(s). E adicionando na ListIP.
                 string[] Jooj = new string[4];
                 int[] myints;
                 string[] ListU = new string[myList.Count];
                 p = ListIP.Count;
 
-                for (int i = 0; i < p; i++)
-                {
-                    ListIP.RemoveAt(0);
-                }
+                ListIP.Clear();
 
                 for (int i = 0; i < myList.Count; i++)
                 {
@@ -275,11 +278,13 @@ namespace MacetimTools.Class
                     }
 
                     ListU[i] = ListU[i].Remove(ListU[i].Length - 1);
+
                     ListIP.Add(ListU[i]);
                 }
             }
             catch
             {
+                //----Sem resolução
                 return;
             }
         }

@@ -12,10 +12,13 @@ using System.Speech.Synthesis.TtsEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Speech.Synthesis;
+using System.Reflection;
+using System.Drawing;
+using System.Data;
 
 namespace MacetimTools
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form, ISharpUpdatable
     {
         public static string ipV4, exWay;
         public static int ipIndex = 0;
@@ -23,10 +26,47 @@ namespace MacetimTools
         HH_Lib hwh = new HH_Lib();
         KeyboardHook hook = new KeyboardHook();
         ComparateImage comparate = new ComparateImage();
+        private SharpUpdate updater;
         public Form1()
         {
             InitializeComponent();
+
+            this.labelVersion.Text = this.ApplicationAssembly.GetName().Version.ToString();
+            updater = new SharpUpdate(this);
+
         }
+
+        #region SharpUpdate
+        public string ApplicationName
+        {
+            get { return "MacetimTools"; }
+        }
+
+        public string ApplicationID
+        {
+            get { return "MacetimTools"; }
+        }
+
+        public Assembly ApplicationAssembly
+        {
+            get { return Assembly.GetExecutingAssembly(); }
+        }
+        public Icon ApplicationIcon
+        {
+            get { return this.Icon; }
+        }
+
+        public Uri UpdateXmlLocation
+        {
+            get { return new Uri("https://raw.githubusercontent.com/h4rdrew/MacetimTools/master/update.xml"); }
+        }
+
+        public Form Context
+        {
+            get { return this; }
+        }
+        #endregion
+
         private void Form1_Load(object sender, EventArgs e)
         {
             // Verificacao se a pasta "Macetim" existe ou nao, se nao, ele cria.
@@ -209,11 +249,6 @@ namespace MacetimTools
                     }
             }
             base.WndProc(ref m);
-        }
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Notas notas = new Notas();
-            notas.Show();
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -450,6 +485,12 @@ namespace MacetimTools
                 synth.Speak(song);
             }
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            updater.DoUpdate();
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
 
