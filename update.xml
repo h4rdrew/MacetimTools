@@ -6,7 +6,7 @@
 		<fileName>MacetimTools.exe</fileName>
 		<md5>cdacf2c11e06034ecfc36febe93c22cf</md5>
 		<description>Initial update</description>
-		<launchArgs></launchArgs>
+		<launchArgs>a</launchArgs>
 	
 	</update>
 </sharpUpdate>
