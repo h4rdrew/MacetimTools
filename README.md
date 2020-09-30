@@ -37,7 +37,8 @@ Lembrando que é apenas uma BETA.
 - [ ] Cronômetro interativo.
 
 
-## Notas da versão v1.6a - BETA: 
+## Notas da versão v1.7.0 - BETA: 
 
-Corrigido o problema onde o Firewall w/Friends não funcionava com 2 ou mais amigos.
+Correção da lista de IP, após abrir o programa novamente e inserir outro IP ele substituía na regra do Firewall, e consequentemente ele bagunçava a lista.
 
+Adicionado nova função "Update" basta clicar no botão 'Check for Updates' ele vai verificar a versão mais recente (por enquanto se ele não encontrar update ele não vai retornar nada).
