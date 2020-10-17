@@ -4,8 +4,8 @@
 		<version>1.7.1.0</version>
 		<url>https://github.com/h4rdrew/MacetimTools/raw/master/MacetimTools.exe</url>
 		<fileName>MacetimTools.exe</fileName>
-		<md5>32d10ce2b6bbfb416e91a9eeb894bd4e</md5>
-		<description>Correção na lista de IP(s) adicionados. Adicionado um auto-update, apenas clique no botão para checar e atualize caso houver.(4)</description>
+		<md5>e975faab7ce24c741485c698fc5f4fcf</md5>
+		<description>Auto-update agora verificar atualização automaticamente toda vez que você for abrir o programa.</description>
 		<launchArgs></launchArgs>
 	
 	</update>
