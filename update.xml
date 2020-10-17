@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <sharpUpdate>
 	<update appId="MacetimTools">
-		<version>1.7.0.0</version>
+		<version>1.7.1.0</version>
 		<url>https://github.com/h4rdrew/MacetimTools/raw/master/MacetimTools.exe</url>
 		<fileName>MacetimTools.exe</fileName>
-		<md5>3406a4c49d2e759323b3b07d7b5d72ff</md5>
-		<description>Satan3 Correção na lista de IP(s) adicionados. Adicionado um auto-update, apenas clique no botão para checar e atualize caso houver.</description>
+		<md5>e975faab7ce24c741485c698fc5f4fcf</md5>
+		<description>Auto-update agora verificar atualização automaticamente toda vez que você for abrir o programa.</description>
 		<launchArgs></launchArgs>
 	
 	</update>
