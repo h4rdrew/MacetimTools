@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <sharpUpdate>
 	<update appId="MacetimTools">
-		<version>1.7.0.0</version>
+		<version>1.7.1.0</version>
 		<url>https://github.com/h4rdrew/MacetimTools/raw/master/MacetimTools.exe</url>
 		<fileName>MacetimTools.exe</fileName>
 		<md5>32d10ce2b6bbfb416e91a9eeb894bd4e</md5>
