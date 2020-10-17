@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MacetimTools.Form1;
 
 namespace MacetimTools
 {
+    
     internal class SharpUpdateXML
     {
         private Version version;
@@ -25,7 +27,6 @@ namespace MacetimTools
         {
             get { return this.uri; }
         }
-        //public Uri Uri { get; }
         internal string FileName
         {
             get { return this.fileName; }
@@ -53,6 +54,15 @@ namespace MacetimTools
         }
         internal bool IsNeverThan(Version version)
         {
+            if (version >= this.version)
+            {
+                versionX = true;
+            }
+            else
+            {
+                versionX = false;
+            }
+
             return this.version > version;
         }
         internal static bool ExistOnServer(Uri location)

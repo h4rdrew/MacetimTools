@@ -27,12 +27,15 @@ namespace MacetimTools
         KeyboardHook hook = new KeyboardHook();
         ComparateImage comparate = new ComparateImage();
         private SharpUpdate updater;
+        public static bool versionX = false;
+
         public Form1()
         {
             InitializeComponent();
 
             this.labelVersion.Text = this.ApplicationAssembly.GetName().Version.ToString();
             updater = new SharpUpdate(this);
+            updater.DoUpdate();
 
         }
 
@@ -67,7 +70,6 @@ namespace MacetimTools
         }
         #endregion
 
-        
         private void Form1_Load(object sender, EventArgs e)
         {
             // Verificacao se a pasta "Macetim" existe ou nao, se nao, ele cria.
@@ -490,6 +492,11 @@ namespace MacetimTools
         private void button7_Click(object sender, EventArgs e)
         {
             updater.DoUpdate();
+
+            if (versionX == true)
+            {
+                MessageBox.Show($"Its version is the most recent. Version: {ProductVersion}");
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
