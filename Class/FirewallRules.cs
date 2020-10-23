@@ -107,8 +107,29 @@ namespace MacetimTools.Class
                         }
                         else
                         {
-                            List<string> myList = new List<string>();
+                            
                             //ListIP.Sort();
+
+                            string[,] matriz = new string[ListIP.Count, 4];
+                            string[] arrayIP = new string[4];
+
+                            /*
+                             Colocando os IP do ListIP na Matriz
+                            */
+
+                            for (int y = 0; y < ListIP.Count; y++)
+                            {
+                                arrayIP = ListIP[y].Split('.');
+
+                                for (int x = 0; x < 4; x++)
+                                {
+                                    matriz[y, x] = arrayIP[x];
+                                }
+                            }
+
+
+
+                            List<string> myList = new List<string>();
                             List<string> sortedNumbers = ListIP.OrderBy(number => number).ToList(); //Organizando os IP em ordem crescente.
 
                             for (int i = 0; i < sortedNumbers.Count; i++)

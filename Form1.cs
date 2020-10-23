@@ -117,7 +117,7 @@ namespace MacetimTools
 
             if (checkBox2.Checked == true)
             {
-                DisableDevice();
+                DeviceList();
 
                 try
                 {
@@ -125,7 +125,7 @@ namespace MacetimTools
                 }
                 catch
                 {
-                    DisableDevice();
+                    DeviceList();
                 }
             }
         }
@@ -142,40 +142,18 @@ namespace MacetimTools
             //--- ALT+F9: Network Disable Hotkey
             if (e.Modifier == GlobalHotKey.ModifierKeys.Alt && e.Key == Keys.F9)
             {
-                string[] devices = new string[1];
+                //string[] devices = new string[1];
 
                 //------Disable by Device-----
                 if (checkBox2.Checked == true) 
                 {
-                    //Disable
-                    hwh.CutLooseHardwareNotifications(this.Handle);
-                    devices[0] = comboBox1.SelectedItem.ToString();
-                    hwh.SetDeviceState(devices, false);
-                    hwh.HookHardwareNotifications(this.Handle, true);
-                    //-----------------------------------------------
-                    System.Threading.Thread.Sleep(6000);
-                    //Enable
-                    hwh.CutLooseHardwareNotifications(this.Handle);
-                    devices[0] = comboBox1.SelectedItem.ToString();
-                    hwh.SetDeviceState(devices, true);
-                    hwh.HookHardwareNotifications(this.Handle, true);
+                    SetDisableDevice(false);
                 }
 
                 //------Disable by Network Name-------
                 else
                 {
-                    if (checkBox1.Checked == true)
-                    {
-                        DisableAdapter(textBox1.Text);
-                        System.Threading.Thread.Sleep(3000);
-                        EnableAdapter(textBox1.Text);
-                    }
-                    else
-                    {
-                        DisableAdapter(comboBox2.SelectedItem.ToString());
-                        System.Threading.Thread.Sleep(3000);
-                        EnableAdapter(comboBox2.SelectedItem.ToString());
-                    }
+                    SetDisableAdapter(false);
                 }
             }
             //--- ALT+F12: Solo Public Game Hotkey
@@ -186,11 +164,7 @@ namespace MacetimTools
                 {
                     try
                     {
-                        Process[] remoteByName = Process.GetProcessesByName("GTA5");
-                        int idProcess = remoteByName[0].Id;
-                        StopProcess.SuspendProcess(idProcess);
-                        System.Threading.Thread.Sleep(10000);
-                        StopProcess.ResumeProcess(idProcess);
+                        SetStopProcess(false);
                     }
                     catch
                     {
@@ -224,7 +198,7 @@ namespace MacetimTools
                 }
             }
         }
-        public void DisableDevice()
+        public void DeviceList()
         {
             string[] HardwareList = hwh.GetAll();
             foreach (string s in HardwareList)
@@ -233,6 +207,78 @@ namespace MacetimTools
             }
 
             hwh.HookHardwareNotifications(this.Handle, true);
+        }
+        public void SetStopProcess(bool resume)
+        {
+            Process[] remoteByName = Process.GetProcessesByName("GTA5");
+            int idProcess = remoteByName[0].Id;
+
+            if (resume == false)
+            {
+                Class.StopProcess.SuspendProcess(idProcess);
+                tempo = 5;
+                timerSP.Enabled = true;
+            }
+
+
+            if (resume == true)
+            {
+                Class.StopProcess.ResumeProcess(idProcess);
+            }
+        }
+        public void SetDisableDevice(bool resume)
+        {
+            string[] devices = new string[1];
+
+            if (resume == false)
+            {
+                hwh.CutLooseHardwareNotifications(this.Handle);
+                devices[0] = comboBox1.SelectedItem.ToString();
+                hwh.SetDeviceState(devices, false);
+                hwh.HookHardwareNotifications(this.Handle, true);
+
+                tempo = 6;
+                timerDD.Enabled = true;
+            }
+
+            if(resume == true)
+            {
+                hwh.CutLooseHardwareNotifications(this.Handle);
+                devices[0] = comboBox1.SelectedItem.ToString();
+                hwh.SetDeviceState(devices, true);
+                hwh.HookHardwareNotifications(this.Handle, true);
+            }
+        }
+        public void SetDisableAdapter(bool resume)
+        {
+            if (checkBox1.Checked == true)
+            {
+                if(resume == false)
+                {
+                    DisableAdapter(textBox1.Text);
+                    tempo = 3;
+                    timerNM.Enabled = true;
+                }
+
+                if(resume == true)
+                {
+                    EnableAdapter(textBox1.Text);
+                }
+            }
+            else
+            {
+                if(resume == false)
+                {
+                    DisableAdapter(comboBox2.SelectedItem.ToString());
+                    tempo = 3;
+                    timerNM.Enabled = true;
+                }
+
+                if (resume == true)
+                {
+                    EnableAdapter(comboBox2.SelectedItem.ToString());
+                }
+            }
         }
         protected override void WndProc(ref Message m)
         {
@@ -281,7 +327,7 @@ namespace MacetimTools
                 checkBox1.Enabled = false;
                 textBox1.Enabled = false;
                 //-----------------------
-                DisableDevice();
+                DeviceList();
                 comboBox1.Enabled = true;
             }
 
@@ -357,9 +403,44 @@ namespace MacetimTools
             ipRulesRefreshList() eh acionado para atualizar a listBox1 com o novo IP.
             */
 
-            if (string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
+            #region SwitchCase de tratamento
 
-                return;
+            int caseSwitch = 0;
+
+            if (string.IsNullOrEmpty(textBox2.Text) && string.IsNullOrEmpty(textBox3.Text))
+            {
+                caseSwitch = 1;
+            }
+
+            if (string.IsNullOrEmpty(textBox2.Text) && !string.IsNullOrEmpty(textBox3.Text))
+            {
+                caseSwitch = 2;
+            }
+
+            if (string.IsNullOrEmpty(textBox3.Text) && !string.IsNullOrEmpty(textBox2.Text))
+            {
+                caseSwitch = 3;
+            }
+
+            switch (caseSwitch)
+            {
+                case 1:
+                    MessageBox.Show("O campo de IP e GTAV.exe não foram preenchidos.");
+                    caseSwitch = 0;
+                    return;
+                case 2:
+                    MessageBox.Show("O campo de IP não foi preenchido.");
+                    caseSwitch = 0;
+                    return;
+                case 3:
+                    MessageBox.Show("O campo do caminho do GTAV.exe precisa ser preenchido.");
+                    caseSwitch = 0;
+                    return;
+                case 0:
+                    break;
+            }
+
+            #endregion
 
             exWay = textBox3.Text;
             ipV4 = textBox2.Text;
@@ -488,7 +569,6 @@ namespace MacetimTools
                 synth.Speak(song);
             }
         }
-
         private void button7_Click(object sender, EventArgs e)
         {
             updater.DoUpdate();
@@ -496,6 +576,36 @@ namespace MacetimTools
             if (versionX == true)
             {
                 MessageBox.Show($"Its version is the most recent. Version: {ProductVersion}");
+            }
+        }
+        private void timerSP_Tick(object sender, EventArgs e)
+        {
+            tempo--;
+
+            if (tempo == 0)
+            {
+                timerSP.Enabled = false;
+                SetStopProcess(true);
+            }
+        }
+        private void timerDD_Tick(object sender, EventArgs e)
+        {
+            tempo--;
+
+            if(tempo == 0)
+            {
+                timerDD.Enabled = false;
+                SetDisableDevice(true);
+            }
+        }
+        private void timerNM_Tick(object sender, EventArgs e)
+        {
+            tempo--;
+
+            if (tempo == 0)
+            {
+                timerNM.Enabled = false;
+                SetDisableAdapter(true);
             }
         }
 
