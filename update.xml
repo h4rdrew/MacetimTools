@@ -5,7 +5,7 @@
 		<url>https://github.com/h4rdrew/MacetimTools/raw/master/MacetimTools.exe</url>
 		<fileName>MacetimTools.exe</fileName>
 		<md5>d0bac64dee125ca65f0a1396b77912a7</md5>
-		<description>Auto-update agora verificar atualização automaticamente toda vez que você for abrir o programa.(1)</description>
+		<description>Corrigido o problema quando usava o 'Stop Process' ou 'Network Disable' o programa ficava travado. Função 'Firewall' foi removida.</description>
 		<launchArgs></launchArgs>
 	
 	</update>
