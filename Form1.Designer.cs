@@ -100,11 +100,11 @@ namespace MacetimTools
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Yellow;
-            this.label2.Location = new System.Drawing.Point(649, 360);
+            this.label2.Location = new System.Drawing.Point(614, 360);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 24);
+            this.label2.Size = new System.Drawing.Size(161, 24);
             this.label2.TabIndex = 14;
-            this.label2.Text = "h4rdrew tec.";
+            this.label2.Text = "h4rdrew Studios";
             // 
             // label1
             // 

@@ -216,7 +216,7 @@ namespace MacetimTools
             if (resume == false)
             {
                 Class.StopProcess.SuspendProcess(idProcess);
-                tempo = 5;
+                tempo = 10;
                 timerSP.Enabled = true;
             }
 
@@ -425,7 +425,7 @@ namespace MacetimTools
             switch (caseSwitch)
             {
                 case 1:
-                    MessageBox.Show("O campo de IP e GTAV.exe não foram preenchidos.");
+                    MessageBox.Show("O campo de IP e GTA5.exe não foram preenchidos.");
                     caseSwitch = 0;
                     return;
                 case 2:
@@ -433,7 +433,7 @@ namespace MacetimTools
                     caseSwitch = 0;
                     return;
                 case 3:
-                    MessageBox.Show("O campo do caminho do GTAV.exe precisa ser preenchido.");
+                    MessageBox.Show("O campo do caminho do GTA5.exe precisa ser preenchido.");
                     caseSwitch = 0;
                     return;
                 case 0:
@@ -608,7 +608,6 @@ namespace MacetimTools
                 SetDisableAdapter(true);
             }
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
 
@@ -727,15 +726,21 @@ namespace MacetimTools
         private void button3_Click(object sender, EventArgs e)
         {
             /* 
-            O usuario seleciona o caminho no qual se encontra o GTA5.exe
-            porem eh adicionado uma string a mais para poder deixar o path
-            correto ex: C:/aaaaa/bbbbb/cccc/GTA5.exe 
+            O usuario seta o 'GTA5.exe' aonde esta atualmente instalado.
             */
 
-            DialogResult result = folderBrowserDialog1.ShowDialog();
-            if (result == DialogResult.OK)
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                textBox3.Text = folderBrowserDialog1.SelectedPath + @"\GTA5.exe";
+                if (ofd.SafeFileName != "GTA5.exe")
+                {
+                    MessageBox.Show("Selecione o 'GTA5.exe'.");
+                }
+                else
+                {
+                    textBox3.Text = ofd.FileName;
+                }
             }
         }
         private void button6_Click(object sender, EventArgs e)
