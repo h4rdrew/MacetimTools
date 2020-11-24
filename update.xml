@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <sharpUpdate>
 	<update appId="MacetimTools">
-		<version>1.7.2.0</version>
+		<version>1.7.3.0</version>
 		<url>https://github.com/h4rdrew/MacetimTools/raw/master/MacetimTools.exe</url>
 		<fileName>MacetimTools.exe</fileName>
-		<md5>d0bac64dee125ca65f0a1396b77912a7</md5>
-		<description>Corrigido o problema quando usava o 'Stop Process' ou 'Network Disable' o programa ficava travado. Função 'Firewall' foi removida.</description>
+		<md5>fd71da048f89df352225573fec206090</md5>
+		<description>Corrigido o problema do 'Stop Process' que não funcionava.</description>
 		<launchArgs></launchArgs>
 	
 	</update>
