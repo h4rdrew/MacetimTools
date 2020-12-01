@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <sharpUpdate>
 	<update appId="MacetimTools">
-		<version>1.7.4.0</version>
+		<version>1.7.5.0</version>
 		<url>https://github.com/h4rdrew/MacetimTools/raw/master/MacetimTools.exe</url>
 		<fileName>MacetimTools.exe</fileName>
-		<md5>4d38625c462f134101a50add6f1af9a4</md5>
-		<description>Corrigido o problema de alguns IPs que não funcionava.</description>
+		<md5>0e7822683a713894e790b2252e58c5a8</md5>
+		<description>Corrigido o problema que não mostravam os nomes ao lado dos IP</description>
 		<launchArgs></launchArgs>
 	
 	</update>
