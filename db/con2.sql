@@ -1,0 +1,9 @@
+SELECT IP, NAME FROM iplist ORDER BY
+
+CAST(substr(trim(IP),1,instr(trim(IP),'.')-1) AS INTEGER),  
+
+CAST(substr(substr(trim(IP),length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)) ,1, instr(substr(trim(IP),length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)),'.')-1) AS INTEGER), 
+
+CAST(substr(substr(trim(IP),length(substr(substr(trim(IP),length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)) ,1, instr(substr(trim(IP),length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)),'.')))+length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)) ,1, instr(substr(trim(IP),length(substr(substr(trim(IP),length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)) ,1, instr(substr(trim(IP),length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)),'.')))+length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)),'.')-1) AS INTEGER), 
+
+CAST(substr(trim(IP),length(substr(substr(trim(IP),length(substr(substr(trim(IP),length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)) ,1, instr(substr(trim(IP),length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)),'.')))+length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)) ,1, instr(substr(trim(IP),length(substr(substr(trim(IP),length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)) ,1, instr(substr(trim(IP),length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)),'.')))+length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)),'.')))+ length(substr(trim(IP),1,instr(trim(IP),'.')))+length(substr(substr(trim(IP),length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)) ,1, instr(substr(trim(IP),length(substr(trim(IP),1,instr(trim(IP),'.')))+1,length(IP)),'.')))+1,length(trim(IP))) AS INTEGER)

@@ -73,6 +73,16 @@ namespace MacetimTools.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap H4Slogo {
+            get {
+                object obj = ResourceManager.GetObject("H4Slogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap uncheck {
             get {
                 object obj = ResourceManager.GetObject("uncheck", resourceCulture);

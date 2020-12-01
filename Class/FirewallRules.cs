@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using NetFwTypeLib;
 using static MacetimTools.Form1;
 
@@ -95,7 +90,7 @@ namespace MacetimTools.Class
                 if (rule.Name.IndexOf(RuleName) != -1)
                 {
                     indicador = true;
-                    if(RuleName == "GTASoloFriends")
+                    if (RuleName == "GTASoloFriends")
                     {
                         INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
                         string aux = rule.RemoteAddresses;
@@ -107,34 +102,18 @@ namespace MacetimTools.Class
                         }
                         else
                         {
-                            
-                            //ListIP.Sort();
-
-                            string[,] matriz = new string[ListIP.Count, 4];
-                            string[] arrayIP = new string[4];
-
                             /*
-                             Colocando os IP do ListIP na Matriz
+                            Organizando os IP em ordem crescente.
                             */
+                            var unsortedIps = ListIP;
 
-                            for (int y = 0; y < ListIP.Count; y++)
-                            {
-                                arrayIP = ListIP[y].Split('.');
-
-                                for (int x = 0; x < 4; x++)
-                                {
-                                    matriz[y, x] = arrayIP[x];
-                                }
-                            }
-
-
-
+                            var sortedIps = unsortedIps.Select(Version.Parse).OrderBy(arg => arg).Select(arg => arg.ToString()).ToList();
+                            //-----------------------------------------------------------------------------------------------------------
                             List<string> myList = new List<string>();
-                            List<string> sortedNumbers = ListIP.OrderBy(number => number).ToList(); //Organizando os IP em ordem crescente.
 
-                            for (int i = 0; i < sortedNumbers.Count; i++)
+                            for (int i = 0; i < sortedIps.Count; i++)
                             {
-                                ipV4 = sortedNumbers[i];
+                                ipV4 = sortedIps[i];
                                 IpA();
                                 myList.Add("-");
                                 myList.Add(ipNeg);
@@ -343,8 +322,6 @@ namespace MacetimTools.Class
                         auxList.Add("-");
                         auxList.Add(myList[i+1]);
                         auxList.Add(",");
-
-                        //i = i + 2;
                     }
 
                     auxList.RemoveAt(auxList.Count - 1);
