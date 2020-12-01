@@ -91,7 +91,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\lib\net46\System.Data.SQLite.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Data.SQLite.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -103,6 +105,7 @@
     <Compile Include="Class\Banco.cs" />
     <Compile Include="Class\ComparateImage.cs" />
     <Compile Include="Class\DisableEthernet.cs" />
+    <Compile Include="Class\EmbeddedAssembly.cs" />
     <Compile Include="Class\FirewallRules.cs" />
     <Compile Include="Class\GlobalHotKey.cs" />
     <Compile Include="Class\HardwareHelperLib.cs" />
@@ -173,9 +176,6 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="app.manifest" />
-    <Content Include="db\database.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -207,11 +207,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mds.ico" />
+    <EmbeddedResource Include="SQLite.Interop.dll" />
+    <EmbeddedResource Include="System.Data.SQLite.dll" />
     <None Include="Resources\H4Slogo.png" />
     <None Include="Resources\Update.png" />
     <None Include="Resources\uncheck.png" />
     <None Include="Resources\check.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
