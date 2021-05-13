@@ -688,7 +688,7 @@ namespace MacetimTools
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(788, 397);
+            this.ClientSize = new System.Drawing.Size(788, 627);
             this.Controls.Add(this.btn_CkUpdates);
             this.Controls.Add(this.lb_version);
             this.Controls.Add(this.groupBox5);

@@ -40,7 +40,6 @@ namespace MacetimTools
             splashScreen.Close();
             this.Show();
             updater.DoUpdate();
-
         }
 
         #region SharpUpdate
