@@ -8,11 +8,13 @@ using static MacetimTools.Class.SpecificPrint;
 using static MacetimTools.Class.DisableEthernet;
 using static MacetimTools.Class.FirewallRules;
 using static MacetimTools.Class.Banco;
+using static MacetimTools.Class.ContentLoading;
 using HardwareHelperLib;
 using System.Speech.Synthesis;
 using System.Reflection;
 using System.Drawing;
 using System.Data.SQLite;
+using System.Linq;
 
 namespace MacetimTools
 {
@@ -75,17 +77,20 @@ namespace MacetimTools
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            newdb();
+            initializeDb();
 
-            // Verificacao se a pasta "Macetim" existe ou nao, se nao, ele cria.
+            // Verificacao se a pasta "Macetim" existe, se nao, ele cria.
             if (Directory.Exists("C:\\Program Files\\Macetim") == false)
             {
                 Directory.CreateDirectory("C:\\Program Files\\Macetim\\True");
             }
 
+            // Cria .PNG os arquivos embedded para a pasta específica.
+            ReadResource();
+
             // register the event that is fired after the key press.
             hook.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook_KeyPressed);
-            hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F1);  //--- ALT+F1: Digital Casino Heist Hotkey
+            hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F1);  //--- ALT+F1: Fingerprint Casino Heist Hotkey
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F9);  //--- ALT+F9: Network Disable Hotkey
             hook.RegisterHotKey(GlobalHotKey.ModifierKeys.Alt, Keys.F12); //--- ALT+F12: Solo Public Game Hotkey
 
@@ -386,16 +391,16 @@ namespace MacetimTools
                 pb_Firewall.Visible = false;
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void btnAdicionaIPnaLista(object sender, EventArgs e)
         {
             /* 
-            Checando se o textbox2 ou textbox3 nao estao vazios ou nulos
+            Checando se o txb_GTADirectory e txb_IP nao estao vazios ou nulos
             caso algum nao esteja no parametro requisitado, o processo retorna.
 
-            Com devidos dados inseridos em textBox2 e textBox3, outras duas variaveis publicas
+            Com devidos dados inseridos em txb_GTADirectory e txb_IP, outras duas variaveis publicas
             estarao recebendos os valores.
 
-            IPList() eh acionado para que possa armazenar os dados no arquivo IPList.txt
+            IPList() eh acionado para que possa armazenar os dados no arquivo IPList.db
 
             CheckRules() eh acionado para verificar se existe tal regra, se nao, ele cria
             a regra com o nome pre-difinido e insere o IP enviado pelo usuario.
@@ -458,13 +463,13 @@ namespace MacetimTools
             txb_IP.Focus();
             ipRulesRefreshList();
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void btnRemoveIPdaLista(object sender, EventArgs e)
         {
             try
             {
-                string[] test = lbx_IPList.SelectedItem.ToString().Split(' ');
+                string[] ipParaRemover = lbx_IPList.SelectedItem.ToString().Split(' ');
                 IpRemove(lbx_IPList.SelectedIndex);
-                IPRemoveDB(test[0]);
+                dbDelete(ipParaRemover[0]);
                 ipRulesRefreshList();
             }
             catch
@@ -478,24 +483,34 @@ namespace MacetimTools
 
             lbx_IPList.Items.Clear();
 
-            string cs = @"URI=file:C:\Program Files\Macetim\iplist.db";
+            //string cs = @"URI=file:C:\Program Files\Macetim\iplist.db";
 
-            using var con = new SQLiteConnection(cs);
-            con.Open();
+            //using var con = new SQLiteConnection(cs);
+            //con.Open();
 
-            string stm = "SELECT IP, NAME FROM iplist ORDER BY " +
-                "CAST(substr(trim(IP), 1, instr(trim(IP), '.') - 1) AS INTEGER), " +
-                "CAST(substr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.') - 1) AS INTEGER), " +
-                "CAST(substr(substr(trim(IP), length(substr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.'))) + length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.'))) + length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.') - 1) AS INTEGER), " +
-                "CAST(substr(trim(IP), length(substr(substr(trim(IP), length(substr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.'))) + length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.'))) + length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.'))) + length(substr(trim(IP), 1, instr(trim(IP), '.'))) + length(substr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.'))) + 1, length(trim(IP))) AS INTEGER)";
+            var ips = Banco.ObterIps()
+                           .OrderBy(ip => ip.IpSort())
+                           .ToArray();
 
-            using var cmd = new SQLiteCommand(stm, con);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
+            foreach (var ip in ips)
             {
-                lbx_IPList.Items.Add($"{rdr.GetString(0)} - {rdr.GetString(1)}");
-            } 
+                lbx_IPList.Items.Add($"{ip.IP} - {ip.NAME}");
+            }
+            //string stm = "SELECT IP, NAME FROM iplist ORDER BY " +
+            //    "CAST(substr(trim(IP), 1, instr(trim(IP), '.') - 1) AS INTEGER), " +
+            //    "CAST(substr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.') - 1) AS INTEGER), " +
+            //    "CAST(substr(substr(trim(IP), length(substr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.'))) + length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.'))) + length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.') - 1) AS INTEGER), " +
+            //    "CAST(substr(trim(IP), length(substr(substr(trim(IP), length(substr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.'))) + length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.'))) + length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.'))) + length(substr(trim(IP), 1, instr(trim(IP), '.'))) + length(substr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), 1, instr(substr(trim(IP), length(substr(trim(IP), 1, instr(trim(IP), '.'))) + 1, length(IP)), '.'))) + 1, length(trim(IP))) AS INTEGER)";
+
+            //using var cmd = new SQLiteCommand(stm, con);
+            //using SQLiteDataReader rdr = cmd.ExecuteReader();
+
+            //while (rdr.Read())
+            //{
+            //    lbx_IPList.Items.Add($"{rdr.GetString(0)} - {rdr.GetString(1)}");
+            //} 
+
+
         }
         public void networkIdenRefreshList()
         {
@@ -504,20 +519,6 @@ namespace MacetimTools
             cbx_NetworkName.DataSource = null;
             cbx_NetworkName.Items.Clear();
             cbx_NetworkName.DataSource = NetworkIdentifier();
-        }
-        public void IPRemoveDB(string ip)
-        {
-            string cs = @"URI=file:C:\Program Files\Macetim\iplist.db";
-
-            using var con = new SQLiteConnection(cs);
-            con.Open();
-
-            string stm = $"delete from iplist where IP = '{ip}'";
-
-            using var cmd = new SQLiteCommand(stm, con);
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
-
-            rdr.Read();
         }
         public void VIMH(string text)
         {
@@ -689,23 +690,23 @@ namespace MacetimTools
             }
 
         }
-        private void button3_Click(object sender, EventArgs e)
+        private void btnSearch(object sender, EventArgs e)
         {
             /* 
             O usuario seta o 'GTA5.exe' aonde esta atualmente instalado.
             */
 
-            OpenFileDialog ofd = new OpenFileDialog();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            if (ofd.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (ofd.SafeFileName != "GTA5.exe")
+                if (openFileDialog.SafeFileName != "GTA5.exe")
                 {
                     MessageBox.Show("Selecione o 'GTA5.exe'.");
                 }
                 else
                 {
-                    txb_GTADirectory.Text = ofd.FileName;
+                    txb_GTADirectory.Text = openFileDialog.FileName;
                 }
             }
         }

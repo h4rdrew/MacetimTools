@@ -9,6 +9,7 @@ using System.Drawing;
 using static MacetimTools.Class.ImageBright;
 using System.Windows.Forms;
 using static MacetimTools.Form1;
+using static MacetimTools.Class.ContentLoading;
 
 namespace MacetimTools.Class
 {
@@ -21,6 +22,7 @@ namespace MacetimTools.Class
 
             string[] filesTemp = Directory.GetFiles(@"C:\Program Files\Macetim\Temp");
             string[] filesTrue = Directory.GetFiles(@"C:\Program Files\Macetim\True");
+
             List<bool>[] iHash1 = new List<bool>[16];
             List<bool>[] iHash2 = new List<bool>[8];
 

@@ -19,6 +19,8 @@
     <OldToolsVersion>2.0</OldToolsVersion>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -33,8 +35,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -91,6 +91,18 @@
     <Reference Include="Costura, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>packages\Costura.Fody.4.1.0\lib\net40\Costura.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.Bson.1.0.2\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.DatabaseWrapper, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Simple.DatabaseWrapper.1.0.8\lib\net45\Simple.DatabaseWrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Sqlite, Version=0.6.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Simple.Sqlite.0.6.4\lib\net45\Simple.Sqlite.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -108,6 +120,7 @@
   <ItemGroup>
     <Compile Include="Class\Banco.cs" />
     <Compile Include="Class\ComparateImage.cs" />
+    <Compile Include="Class\ContentLoading.cs" />
     <Compile Include="Class\DisableEthernet.cs" />
     <Compile Include="Class\EmbeddedAssembly.cs" />
     <Compile Include="Class\FirewallRules.cs" />
@@ -128,6 +141,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SharpUpdateAcceptForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,14 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="SharpUpdateAcceptForm.resx">
       <DependentUpon>SharpUpdateAcceptForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -210,8 +223,25 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Image1.png" />
     <EmbeddedResource Include="costura32\SQLite.Interop.dll" />
     <EmbeddedResource Include="costura64\SQLite.Interop.dll" />
+    <EmbeddedResource Include="Content\001.png" />
+    <EmbeddedResource Include="Content\002.png" />
+    <EmbeddedResource Include="Content\003.png" />
+    <EmbeddedResource Include="Content\004.png" />
+    <EmbeddedResource Include="Content\005.png" />
+    <EmbeddedResource Include="Content\006.png" />
+    <EmbeddedResource Include="Content\007.png" />
+    <EmbeddedResource Include="Content\008.png" />
+    <EmbeddedResource Include="Content\009.png" />
+    <EmbeddedResource Include="Content\010.png" />
+    <EmbeddedResource Include="Content\011.png" />
+    <EmbeddedResource Include="Content\012.png" />
+    <EmbeddedResource Include="Content\013.png" />
+    <EmbeddedResource Include="Content\014.png" />
+    <EmbeddedResource Include="Content\015.png" />
+    <EmbeddedResource Include="Content\016.png" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="mds.ico" />
     <EmbeddedResource Include="System.Data.SQLite.dll" />

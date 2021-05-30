@@ -100,7 +100,7 @@ namespace MacetimTools
             this.lb_h4S.AutoSize = true;
             this.lb_h4S.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_h4S.ForeColor = System.Drawing.Color.Yellow;
-            this.lb_h4S.Location = new System.Drawing.Point(614, 360);
+            this.lb_h4S.Location = new System.Drawing.Point(582, 360);
             this.lb_h4S.Name = "lb_h4S";
             this.lb_h4S.Size = new System.Drawing.Size(161, 24);
             this.lb_h4S.TabIndex = 14;
@@ -307,14 +307,14 @@ namespace MacetimTools
             // 
             this.gb_DCH.Controls.Add(this.pictureBox1);
             this.gb_DCH.Controls.Add(this.label7);
-            this.gb_DCH.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
+            this.gb_DCH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gb_DCH.ForeColor = System.Drawing.Color.Yellow;
-            this.gb_DCH.Location = new System.Drawing.Point(548, 12);
+            this.gb_DCH.Location = new System.Drawing.Point(516, 12);
             this.gb_DCH.Name = "gb_DCH";
             this.gb_DCH.Size = new System.Drawing.Size(227, 326);
             this.gb_DCH.TabIndex = 18;
             this.gb_DCH.TabStop = false;
-            this.gb_DCH.Text = "Digital Casino Heist";
+            this.gb_DCH.Text = "Fingerprint Casino Heist";
             // 
             // pictureBox1
             // 
@@ -382,7 +382,7 @@ namespace MacetimTools
             this.gb_IPRules.ForeColor = System.Drawing.Color.Yellow;
             this.gb_IPRules.Location = new System.Drawing.Point(242, 12);
             this.gb_IPRules.Name = "gb_IPRules";
-            this.gb_IPRules.Size = new System.Drawing.Size(300, 326);
+            this.gb_IPRules.Size = new System.Drawing.Size(268, 326);
             this.gb_IPRules.TabIndex = 24;
             this.gb_IPRules.TabStop = false;
             this.gb_IPRules.Text = "IP Rules";
@@ -399,7 +399,7 @@ namespace MacetimTools
             this.btn_search.Size = new System.Drawing.Size(25, 25);
             this.btn_search.TabIndex = 29;
             this.btn_search.UseVisualStyleBackColor = false;
-            this.btn_search.Click += new System.EventHandler(this.button3_Click);
+            this.btn_search.Click += new System.EventHandler(this.btnSearch);
             // 
             // lb_Name
             // 
@@ -458,7 +458,7 @@ namespace MacetimTools
             this.btn_del.Size = new System.Drawing.Size(25, 25);
             this.btn_del.TabIndex = 23;
             this.btn_del.UseVisualStyleBackColor = true;
-            this.btn_del.Click += new System.EventHandler(this.button2_Click);
+            this.btn_del.Click += new System.EventHandler(this.btnRemoveIPdaLista);
             // 
             // btn_add
             // 
@@ -471,7 +471,7 @@ namespace MacetimTools
             this.btn_add.Size = new System.Drawing.Size(25, 25);
             this.btn_add.TabIndex = 22;
             this.btn_add.UseVisualStyleBackColor = true;
-            this.btn_add.Click += new System.EventHandler(this.button1_Click);
+            this.btn_add.Click += new System.EventHandler(this.btnAdicionaIPnaLista);
             // 
             // groupBox5
             // 
@@ -492,7 +492,7 @@ namespace MacetimTools
             this.groupBox5.ForeColor = System.Drawing.Color.Yellow;
             this.groupBox5.Location = new System.Drawing.Point(12, 404);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(766, 203);
+            this.groupBox5.Size = new System.Drawing.Size(730, 203);
             this.groupBox5.TabIndex = 25;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Timer";
@@ -688,7 +688,7 @@ namespace MacetimTools
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(788, 627);
+            this.ClientSize = new System.Drawing.Size(754, 392);
             this.Controls.Add(this.btn_CkUpdates);
             this.Controls.Add(this.lb_version);
             this.Controls.Add(this.groupBox5);
