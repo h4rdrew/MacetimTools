@@ -10,19 +10,19 @@ namespace MacetimTools.Class
         // e cria na pasta específica, caso já esteja criado, apenas retorna.
         public static void ReadResource()
         {
-            string[] hein = { "001.png", "002.png", "003.png",
-                              "004.png", "005.png", "006.png",
-                              "007.png", "008.png", "009.png",
-                              "010.png", "011.png", "012.png",
-                              "013.png", "014.png", "015.png",
-                              "016.png"};
+            string[] packPNG = { "001.png", "002.png", "003.png",
+                                 "004.png", "005.png", "006.png",
+                                 "007.png", "008.png", "009.png",
+                                 "010.png", "011.png", "012.png",
+                                 "013.png", "014.png", "015.png",
+                                 "016.png"};
 
-            foreach (string item in hein)
+            foreach (string imgPNG in packPNG)
             {
-                Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"MacetimTools.Content.{item}");
+                Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"MacetimTools.Content.{imgPNG}");
                 try
                 {
-                    FileStream fileStream = new FileStream($@"C:\Program Files\Macetim\True\{item}", FileMode.CreateNew);
+                    FileStream fileStream = new FileStream($@"C:\Program Files\Macetim\True\{imgPNG}", FileMode.CreateNew);
                     for (int i = 0; i < stream.Length; i++)
                         fileStream.WriteByte((byte)stream.ReadByte());
                     fileStream.Close();
