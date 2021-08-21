@@ -12,9 +12,12 @@ namespace MacetimTools.Class
 
         public string image_comparate()
         {
+            string path = @"Macetim\Temp\";
+            var fileInfo = new FileInfo(path);
+            if (!fileInfo.Directory.Exists) fileInfo.Directory.Create();
 
-            string[] filesTemp = Directory.GetFiles(@"C:\Program Files\Macetim\Temp");
-            string[] filesTrue = Directory.GetFiles(@"C:\Program Files\Macetim\True");
+            string[] filesTemp = Directory.GetFiles(@"Macetim\Temp");
+            string[] filesTrue = Directory.GetFiles(@"Macetim\True");
 
             List<bool>[] iHash1 = new List<bool>[16];
             List<bool>[] iHash2 = new List<bool>[8];

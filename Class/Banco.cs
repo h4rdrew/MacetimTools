@@ -1,6 +1,7 @@
 ﻿using Simple.DatabaseWrapper.Attributes;
 using Simple.Sqlite;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace MacetimTools.Class
@@ -10,8 +11,11 @@ namespace MacetimTools.Class
         static SqliteDB db;
         public static void initializeDb()
         {
-            string curFile = @"C:\Program Files\Macetim\iplist.db";
-            db = new SqliteDB(curFile);
+            string dbPath = @"Macetim\Banco\iplist.db";
+            var fileInfo = new FileInfo(dbPath);
+            if (!fileInfo.Directory.Exists) fileInfo.Directory.Create();
+
+            db = new SqliteDB(dbPath);
             var result = db.CreateTables()
                            .Add<iplist>()
                            .Commit();

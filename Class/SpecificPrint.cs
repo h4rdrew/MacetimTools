@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace MacetimTools.Class
 {
@@ -27,7 +28,12 @@ namespace MacetimTools.Class
                 Bitmap bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppArgb);
                 Graphics g = Graphics.FromImage(bmp);
                 g.CopyFromScreen(rect.Left, rect.Top, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
-                bmp.Save($@"C:\Program Files\Macetim\Temp\{nameImage[b]}.bmp", ImageFormat.Bmp);
+
+                string path = @"Macetim\Temp\";
+                var fileInfo = new FileInfo(path);
+                if (!fileInfo.Directory.Exists) fileInfo.Directory.Create();
+
+                bmp.Save($@"Macetim\Temp\{nameImage[b]}.bmp", ImageFormat.Bmp);
             }
 
             aux = 131;
@@ -41,7 +47,7 @@ namespace MacetimTools.Class
                 Bitmap bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppArgb);
                 Graphics g = Graphics.FromImage(bmp);
                 g.CopyFromScreen(rect.Left, rect.Top, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
-                bmp.Save($@"C:\Program Files\Macetim\Temp\{nameImage[b]}.bmp", ImageFormat.Bmp);
+                bmp.Save($@"Macetim\Temp\{nameImage[b]}.bmp", ImageFormat.Bmp);
             }
             
         }
