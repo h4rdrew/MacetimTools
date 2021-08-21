@@ -1,20 +1,19 @@
-using System;
-using System.Windows.Forms;
-using System.IO;
-using System.Diagnostics;
+using HardwareHelperLib;
 using MacetimTools.Class;
-using static MacetimTools.Class.GlobalHotKey;
-using static MacetimTools.Class.SpecificPrint;
-using static MacetimTools.Class.DisableEthernet;
-using static MacetimTools.Class.FirewallRules;
+using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Speech.Synthesis;
+using System.Windows.Forms;
 using static MacetimTools.Class.Banco;
 using static MacetimTools.Class.ContentLoading;
-using HardwareHelperLib;
-using System.Speech.Synthesis;
-using System.Reflection;
-using System.Drawing;
-using System.Data.SQLite;
-using System.Linq;
+using static MacetimTools.Class.DisableEthernet;
+using static MacetimTools.Class.FirewallRules;
+using static MacetimTools.Class.GlobalHotKey;
+using static MacetimTools.Class.SpecificPrint;
 
 namespace MacetimTools
 {

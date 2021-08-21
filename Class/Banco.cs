@@ -1,13 +1,7 @@
-﻿using System;
+﻿using Simple.DatabaseWrapper.Attributes;
+using Simple.Sqlite;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using System.Data.SQLite;
-using System.IO;
-using Simple.Sqlite;
-using Simple.DatabaseWrapper.Attributes;
 
 namespace MacetimTools.Class
 {

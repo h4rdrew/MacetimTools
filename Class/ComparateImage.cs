@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Speech.Synthesis;
-using System.Drawing;
 using static MacetimTools.Class.ImageBright;
-using System.Windows.Forms;
-using static MacetimTools.Form1;
-using static MacetimTools.Class.ContentLoading;
 
 namespace MacetimTools.Class
 {
