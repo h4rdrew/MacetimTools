@@ -11,12 +11,12 @@ namespace MacetimTools.Class
         public static string ipNeg = " ", ipPos = " ";
         public static bool indicador = false;
         public static List<string> ListIP = new List<string>();
-        
+
         public static void FirewallAddRule(string RuleName)
         {
             int option = 0;
 
-            if(RuleName == "GTASoloFriends")
+            if (RuleName == "GTASoloFriends")
             {
                 option = 1;
             }
@@ -33,7 +33,7 @@ namespace MacetimTools.Class
                     firewallRule.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_OUT;
                     firewallRule.Enabled = false;
                     firewallRule.InterfaceTypes = "All";
-                    if(option == 1)
+                    if (option == 1)
                     {
                         firewallRule.Protocol = 17;
                         firewallRule.ApplicationName = $@"{exWay}";
@@ -95,47 +95,53 @@ namespace MacetimTools.Class
                         INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
                         string aux = rule.RemoteAddresses;
                         IpA();
-
-                        if (aux == "*")
+                        try
                         {
-                            rule.RemoteAddresses = $"0.0.0.0-{ipNeg},{ipPos}-255.255.255.255";
-                        }
-                        else
-                        {
-                            /*
-                            Organizando os IP em ordem crescente.
-                            */
-                            var unsortedIps = ListIP;
-
-                            var sortedIps = unsortedIps.Select(Version.Parse).OrderBy(arg => arg).Select(arg => arg.ToString()).ToList();
-                            //-----------------------------------------------------------------------------------------------------------
-                            List<string> myList = new List<string>();
-
-                            for (int i = 0; i < sortedIps.Count; i++)
+                            if (aux == "*")
                             {
-                                ipV4 = sortedIps[i];
-                                IpA();
-                                myList.Add("-");
-                                myList.Add(ipNeg);
-                                myList.Add(",");
-                                myList.Add(ipPos);
+                                rule.RemoteAddresses = $"0.0.0.0-{ipNeg},{ipPos}-255.255.255.255";
                             }
+                            else
+                            {
+                                /*
+                                Organizando os IP em ordem crescente.
+                                */
+                                var unsortedIps = ListIP;
 
-                            string aux2 = string.Join("", myList);
+                                var sortedIps = unsortedIps.Select(Version.Parse).OrderBy(arg => arg).Select(arg => arg.ToString()).ToList();
+                                //-----------------------------------------------------------------------------------------------------------
+                                List<string> myList = new List<string>();
 
-                            rule.RemoteAddresses = $"0.0.0.0{aux2}-255.255.255.255";
+                                for (int i = 0; i < sortedIps.Count; i++)
+                                {
+                                    ipV4 = sortedIps[i];
+                                    IpA();
+                                    myList.Add("-");
+                                    myList.Add(ipNeg);
+                                    myList.Add(",");
+                                    myList.Add(ipPos);
+                                }
+
+                                string aux2 = string.Join("", myList);
+
+                                rule.RemoteAddresses = $"0.0.0.0{aux2}-255.255.255.255";
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            return;
                         }
                     }
                 }
             }
             if (indicador == false)
             {
-                if (RuleName == "GTASoloFriends") 
+                if (RuleName == "GTASoloFriends")
                 {
                     FirewallAddRule(RuleName);
                     IpA();
                 }
-                if(RuleName == "Block Internet")
+                if (RuleName == "Block Internet")
                 {
                     FirewallAddRule(RuleName);
                 }
@@ -156,6 +162,7 @@ namespace MacetimTools.Class
                     rule.Enabled = interruptor;
                 }
             }
+
         }
         public static bool FirewallCheckStatus(string RuleName)
         {
@@ -216,7 +223,7 @@ namespace MacetimTools.Class
             }
 
             catch
-            { 
+            {
                 //----Sem resolução
             }
         }
@@ -302,7 +309,7 @@ namespace MacetimTools.Class
                     string aux = rule.RemoteAddresses;
                     string[] blocks;
                     List<string> myList = new List<string>();
-                    blocks = aux.Split(',','-');
+                    blocks = aux.Split(',', '-');
 
                     for (int i = 0; i < blocks.Length; i++)
                     {
@@ -320,7 +327,7 @@ namespace MacetimTools.Class
                     {
                         auxList.Add(myList[i]);
                         auxList.Add("-");
-                        auxList.Add(myList[i+1]);
+                        auxList.Add(myList[i + 1]);
                         auxList.Add(",");
                     }
 
@@ -332,7 +339,7 @@ namespace MacetimTools.Class
                     {
                         rule.RemoteAddresses = "";
                     }
-                    if(auxList.Count != 3)
+                    if (auxList.Count != 3)
                     {
                         rule.RemoteAddresses = aux;
                     }

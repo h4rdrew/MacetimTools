@@ -192,17 +192,26 @@ namespace MacetimTools
                     }
                 }
                 //--- Firewall w/Friends
+                exWay = txb_GTADirectory.Text;
                 if (rbtn_FirewallFriends.Checked == true)
                 {
-                    if (FirewallCheckStatus("GTASoloFriends") == true)
+                    if (!string.IsNullOrEmpty(txb_GTADirectory.Text))
                     {
-                        FirewallSet(false, "GTASoloFriends");
-                        pb_Firewall.Image = MacetimTools.Properties.Resources.uncheck;
+                        if (FirewallCheckStatus("GTASoloFriends") == true)
+                        {
+                            FirewallSet(false, "GTASoloFriends");
+                            pb_Firewall.Image = MacetimTools.Properties.Resources.uncheck;
+                        }
+                        else
+                        {
+                            CheckRules("GTASoloFriends");
+                            FirewallSet(true, "GTASoloFriends");
+                            pb_Firewall.Image = MacetimTools.Properties.Resources.check;
+                        }
                     }
                     else
                     {
-                        FirewallSet(true, "GTASoloFriends");
-                        pb_Firewall.Image = MacetimTools.Properties.Resources.check;
+                        MessageBox.Show("Por favor preencha o diretório do GTAV.exe");
                     }
                 }
             }
